@@ -62,8 +62,7 @@ class Detector_sitting_balance_right implements Detector_default{
         this.orderText = "達標!";
       }
       if (
-      angle((posedata[22]!+posedata[24]!/2), (posedata[23]!+posedata[25]!/2),
-          (posedata[48]!+posedata[46]!/2),(posedata[49]!+posedata[47]!/2), posedata[48]!, posedata[49]!)<75 //肩膀中點與盆骨中點與右盆骨角度
+        distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!)>70
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
@@ -76,8 +75,7 @@ class Detector_sitting_balance_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      angle((posedata[22]!+posedata[24]!/2), (posedata[23]!+posedata[25]!/2),
-          (posedata[48]!+posedata[46]!/2),(posedata[49]!+posedata[47]!/2), posedata[48]!, posedata[49]!)>80 //肩膀中點與盆骨中點與右盆骨角度
+      distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!)<70
       ) {
         //確認復歸
         this.startdDetector = true;
