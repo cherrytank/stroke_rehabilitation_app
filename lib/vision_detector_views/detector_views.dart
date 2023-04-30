@@ -9,6 +9,7 @@ export 'body_view/upper_body_Advanced/forward_shoulder_right.dart';
 export 'body_view/upper_body_Advanced/forward_elbow_right.dart';
 export 'body_view/upper_body_Advanced/shoulder_raise_right.dart';
 export 'body_view/upper_body_Advanced/heads_raise_right.dart';
+export 'body_view/upper_body_Advanced/Shrugging_circles_right.dart';
 export 'body_view/upper_body_Advanced/towel_right.dart';
 export 'body_view/lower_body/thigh_stretch_right.dart';
 export 'body_view/lower_body/raise_feet_right.dart';
@@ -46,7 +47,7 @@ export 'body_view/lower_body_Advanced/sitting_balance_right.dart';
     [13][37]raise_feet(躺姿抬腳) done
     [14][38]thigh_abduction(大腿外展) done
     [15][39]bent_knees(膝蓋彎曲) done
-    [16][40]thigh_receive(大腿內收)
+    [16][40]thigh_receive(大腿內收) done
     [17][41]calf_knees(小腿前踢) done
   進階下肢
     [18][42]lift_feet(側抬腳式) done

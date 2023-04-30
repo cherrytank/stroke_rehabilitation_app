@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import '../assembly.dart';
-
+import 'package:audioplayers/audioplayers.dart';//播放音檔
 
 class Detector_bent_knees_right implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
@@ -23,6 +23,7 @@ class Detector_bent_knees_right implements Detector_default{
   bool right_side = true;
   bool timerui = false;
   String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  final player = AudioCache();//播放音檔
 
   void startd() {
     //倒數計時
@@ -62,6 +63,7 @@ class Detector_bent_knees_right implements Detector_default{
         this.startdDetector = false;
         this.orderText = "達標";
         this.posecounter++;
+        this.sounder(this.posecounter);
       }
     } else if (DetectorED) {
       //預防空值被訪問
@@ -116,4 +118,10 @@ class Detector_bent_knees_right implements Detector_default{
         },
       );
   }
+
+  void sounder(int counter){
+    player.play('pose_audios/${counter}.mp3');
+  }
+
+
 }

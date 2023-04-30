@@ -38,9 +38,9 @@ class global{
             case 9:
               global.Det = Detector_heads_raise_right();
               break;
-            // case 10:
-            //   global.Det = ;
-            //   break;
+            case 10:
+              global.Det = Detector_Shrugging_circles_right();
+              break;
             case 11:
               global.Det = Detector_towel_right();
               break;

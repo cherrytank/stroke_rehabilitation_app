@@ -4,7 +4,7 @@ import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'body_view/assembly.dart';
 import 'pose_transform.dart';
-
+import 'package:audioplayers/audioplayers.dart';//播放音檔
 
 class pose_view extends StatefulWidget {
   @override
@@ -18,6 +18,7 @@ class _PoseDetectorViewState extends State<pose_view> {
   bool _isBusy = false;
   CustomPaint? _customPaint;
   String? _text;
+  final player = AudioCache();//播放音檔
   @override
   void initState() {
     global.pose_tranform();

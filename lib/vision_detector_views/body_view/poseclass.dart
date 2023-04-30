@@ -1,3 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';//播放音檔
+
 abstract class Detector_default {
   late int posetimecounter; //復健動作持續秒數
   late int posetimeTarget; //復健動作持續秒數目標
@@ -18,6 +20,7 @@ abstract class Detector_default {
   late bool changeUI;
   late bool timerui;
   late String mindText;
+  final player = AudioCache();//播放音檔
 
   void startd(){}
 
@@ -38,4 +41,7 @@ abstract class Detector_default {
   }
 
   void settimer(){}
+
+
+  void sounder(int counter){}
 }

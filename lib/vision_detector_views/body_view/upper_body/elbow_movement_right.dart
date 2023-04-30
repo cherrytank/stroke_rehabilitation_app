@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import '../assembly.dart';
+import 'package:audioplayers/audioplayers.dart';//播放音檔
 
 class Detector_elbow_movement_right implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
@@ -22,6 +23,7 @@ class Detector_elbow_movement_right implements Detector_default{
   bool right_side =true;
   bool timerui = true;
   String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
     int counter = 5;
@@ -60,6 +62,7 @@ class Detector_elbow_movement_right implements Detector_default{
         this.posecounter++;
         this.posetimecounter = 0;
         this.orderText = "達標!";
+        this.sounder(this.posecounter);
       }
       if (distance(posedata[24]!, posedata[25]!, posedata[32]!, posedata[33]!)<50
           &&this.startdDetector) {
@@ -124,5 +127,9 @@ class Detector_elbow_movement_right implements Detector_default{
         }
       },
     );
+  }
+
+  void sounder(int counter){
+    player.play('pose_audios/${counter}.mp3');
   }
 }

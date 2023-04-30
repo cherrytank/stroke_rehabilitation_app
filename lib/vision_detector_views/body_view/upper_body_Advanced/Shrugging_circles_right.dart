@@ -3,7 +3,7 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_Seated_Dynamics_right implements Detector_default{
+class Detector_Shrugging_circles_right implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 0; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
@@ -57,8 +57,9 @@ class Detector_Seated_Dynamics_right implements Detector_default{
     print(posedata[32]!);
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請身體往下";
-      if (distance(posedata[24]!, posedata[25]!, posedata[52]!, posedata[53]!)<150
+      this.orderText = "請肩膀繞圈";
+      if (posedata[25]! < (this.Standpoint_Y!)
+          &&posedata[23]! < (this.Standpoint_X!)
       ) {
         this.startdDetector = false;
         this.orderText = "達標";
@@ -67,8 +68,9 @@ class Detector_Seated_Dynamics_right implements Detector_default{
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      this.orderText = "請回正身體";
-      if (distance(posedata[24]!, posedata[25]!, posedata[52]!, posedata[53]!)>200) {
+      this.orderText = "請放下";
+      if (posedata[25]! > (this.Standpoint_Y!)
+          &&posedata[23]! > (this.Standpoint_X!)) {
         //確認復歸
         this.startdDetector = true;
       }
@@ -77,10 +79,10 @@ class Detector_Seated_Dynamics_right implements Detector_default{
 
   void setStandpoint() {
     //設定基準點(左上角為(0,0)向右下)
-    // this.Standpoint_X = posedata[22]! - 20;
-    // this.Standpoint_Y = posedata[23]! - 20;
-    // this.Standpoint_bodymind_x = (posedata[22]!+posedata[24]!)/2;
-    // this.Standpoint_bodymind_y = (posedata[23]!+posedata[25]!)/2;
+    this.Standpoint_X = posedata[23]! - 20;
+    this.Standpoint_Y = posedata[25]! - 20;
+    this.Standpoint_bodymind_x = (posedata[22]!+posedata[24]!)/2;
+    this.Standpoint_bodymind_y = (posedata[23]!+posedata[25]!)/2;
   }
 
   void posetargetdone() {
@@ -118,8 +120,8 @@ class Detector_Seated_Dynamics_right implements Detector_default{
       },
     );
   }
-
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
   }
+
 }
