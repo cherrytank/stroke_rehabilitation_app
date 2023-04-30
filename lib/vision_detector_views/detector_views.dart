@@ -3,6 +3,7 @@ export 'body_view/upper_body/shrug_right.dart';
 export 'body_view/upper_body/crutch_right.dart';
 export 'body_view/upper_body/hold_hands_right.dart';
 export 'body_view/upper_body/bath_right.dart';
+export 'body_view/upper_body/elbow_movement_right.dart';
 export 'body_view/upper_body/wipe_table_right.dart';
 export 'body_view/upper_body_Advanced/forward_shoulder_right.dart';
 export 'body_view/upper_body_Advanced/forward_elbow_right.dart';
@@ -13,11 +14,13 @@ export 'body_view/lower_body/thigh_stretch_right.dart';
 export 'body_view/lower_body/raise_feet_right.dart';
 export 'body_view/lower_body/thigh_abduction_right.dart';
 export 'body_view/lower_body/bent_knees_right.dart';
+export 'body_view/lower_body/thigh_receive_right.dart';
 export 'body_view/lower_body/calf_knees_right.dart';
 export 'body_view/lower_body_Advanced/lift_feet_right.dart';
 export 'body_view/lower_body_Advanced/stand_up_right.dart';
 export 'body_view/lower_body_Advanced/standing_action_right.dart';
 export 'body_view/lower_body_Advanced/standing_knee_bent_right.dart';
+export 'body_view/lower_body_Advanced/Seated_Dynamics_right.dart';
 export 'body_view/lower_body_Advanced/sitting_balance_right.dart';
 
 /*
@@ -27,7 +30,7 @@ export 'body_view/lower_body_Advanced/sitting_balance_right.dart';
     [1][25]hold_hands(撐手) done
     [2][26]wipe_table(擦桌動作) done
     [3][27]crutch(拐杖撐手) done
-    [4][28]elbow_movement(手肘運動)
+    [4][28]elbow_movement(手肘運動) done
     [5][29]bath(擦澡動作) done
 
   進階上肢
@@ -47,10 +50,10 @@ export 'body_view/lower_body_Advanced/sitting_balance_right.dart';
     [17][41]calf_knees(小腿前踢) done
   進階下肢
     [18][42]lift_feet(側抬腳式) done
-    [19][43]stand_up(站姿抬腳)
-    [20][44]striding_action(跨步動作)
-    [21][45]standing_knee_bent(站姿膝彎曲)
-    [22][46]Seated_Dynamics(坐姿動態)
-    [23][47]sitting_balance(坐姿平衡)
+    [19][43]stand_up(站姿抬腳) done
+    [20][44]striding_action(跨步動作) done
+    [21][45]standing_knee_bent(站姿膝彎曲) done
+    [22][46]Seated_Dynamics(坐姿動態) done
+    [23][47]sitting_balance(坐姿平衡) done
 
  */

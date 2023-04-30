@@ -57,6 +57,7 @@ dependencies:
   timeago: 3.2.2
   url_launcher: 6.1.10
   audioplayers: ^0.20.1
+  video_player: ^2.6.1
   image_picker: ^0.8.6
   camera: ^0.10.0+4
   path: ^1.8.2
@@ -101,6 +102,30 @@ flutter:
     - assets/pdfs/
     - assets/picture/a.png
     - assets/picture/b.png
+    - assets/pose_videos/0.mp4
+    - assets/pose_videos/1.mp4
+    - assets/pose_videos/2.mp4
+    - assets/pose_videos/3.mp4
+    - assets/pose_videos/4.mp4
+    - assets/pose_videos/5.mp4
+    - assets/pose_videos/6.mp4
+    - assets/pose_videos/7.mp4
+    - assets/pose_videos/8.mp4
+    - assets/pose_videos/9.mp4
+    - assets/pose_videos/10.mp4
+    - assets/pose_videos/11.mp4
+    - assets/pose_videos/12.mp4
+    - assets/pose_videos/13.mp4
+    - assets/pose_videos/14.mp4
+    - assets/pose_videos/15.mp4
+    - assets/pose_videos/16.mp4
+    - assets/pose_videos/17.mp4
+    - assets/pose_videos/18.mp4
+    - assets/pose_videos/19.mp4
+    - assets/pose_videos/20.mp4
+    - assets/pose_videos/21.mp4
+    - assets/pose_videos/22.mp4
+    - assets/pose_videos/23.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

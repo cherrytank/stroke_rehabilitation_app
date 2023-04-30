@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '/main.dart';
 import '../vision_detector_views/pose_transform.dart';
-import '../vision_detector_views/pose_view.dart';
+import '../vision_detector_views/pose_video.dart';
 
 class Trainlowerbody2Widget extends StatefulWidget {
   const Trainlowerbody2Widget({Key? key}) : super(key: key);
@@ -159,7 +159,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                           else
                                             global.posenumber = 42;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().traindown = '側抬腳式';
@@ -200,7 +200,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                           else
                                             global.posenumber = 43;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().traindown = '站姿抬腳';
@@ -249,7 +249,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                           else
                                             global.posenumber = 44;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().traindown = '跨步動作';
@@ -290,7 +290,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                           else
                                             global.posenumber = 45;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().traindown = '站姿膝彎曲';
@@ -339,7 +339,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                           else
                                             global.posenumber = 46;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().traindown = '坐姿平衡';
@@ -380,7 +380,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                           else
                                             global.posenumber = 47;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().traindown = '坐姿動態';

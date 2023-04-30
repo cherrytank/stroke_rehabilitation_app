@@ -9,8 +9,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '/main.dart';
 import '../vision_detector_views/pose_transform.dart';
-import '../vision_detector_views/pose_view.dart';
-
+import '../vision_detector_views/pose_video.dart';
 
 class Trainupperbody1Widget extends StatefulWidget {
   const Trainupperbody1Widget({Key? key}) : super(key: key);
@@ -161,7 +160,7 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
                                           else
                                             global.posenumber = 24;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().trainup = '聳肩動作';
@@ -213,7 +212,7 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
                                           else
                                             global.posenumber = 25;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().trainup = '撐手動作';
@@ -262,7 +261,7 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
                                           else
                                             global.posenumber = 26;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().trainup = '平移擦桌';
@@ -303,7 +302,7 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
                                           else
                                             global.posenumber = 27;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().trainup = '拐杖撐手';
@@ -352,7 +351,7 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
                                           else
                                             global.posenumber = 28;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().trainup = '手肘運動';
@@ -393,7 +392,7 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
                                           else
                                             global.posenumber = 29;
                                           Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>pose_view()),
+                                            MaterialPageRoute(builder: (context)=>VideoApp()),
                                           );
                                           setState(() {
                                             FFAppState().trainup = '洗澡動作';

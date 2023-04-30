@@ -19,9 +19,9 @@ class global{
             case 3:
               global.Det = Detector_crutch_right();
               break;
-            // case 4:
-            //   global.Det = ;
-            //   break;
+            case 4:
+              global.Det = Detector_elbow_movement_right();
+              break;
             case 5:
               global.Det = Detector_bath_right();
               break;
@@ -57,9 +57,9 @@ class global{
             case 15:
               global.Det = Detector_bent_knees_right();
               break;
-            // case 16:
-            //   global.Det = ;
-            //   break;
+            case 16:
+              global.Det = Detector_thigh_receive_right();
+              break;
             case 17:
               global.Det = Detector_calf_knees_right();
               break;
@@ -76,9 +76,9 @@ class global{
             case 21:
               global.Det = Detector_standing_knee_bent_right();
               break;
-            // case 22:
-            //   global.Det = ;
-            //   break;
+            case 22:
+              global.Det = Detector_Seated_Dynamics_right();
+              break;
             case 23:
               global.Det = Detector_sitting_balance_right();
               break;
