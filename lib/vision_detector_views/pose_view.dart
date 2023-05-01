@@ -5,7 +5,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'body_view/assembly.dart';
 import 'pose_transform.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
-
+import 'package:http/http.dart' as http;
+import '../main.dart';
+import '../index.dart';
 class pose_view extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _PoseDetectorViewState();
@@ -37,8 +39,10 @@ class _PoseDetectorViewState extends State<pose_view> {
   Widget build(BuildContext context) {
     if (global.Det.endDetector) {
       //退回上一頁
-      print("back page");
+      var url = Uri.parse(ip+"train_upok.php");
+      http.post(url);
       Navigator.pop(context);
+      dispose();
     }
     return Stack(
       alignment: Alignment.center,
@@ -208,6 +212,7 @@ class _PoseDetectorViewState extends State<pose_view> {
       ],
     );
   }
+
 
   Future<void> processImage(InputImage inputImage) async {
     if (!_canProcess) return;
