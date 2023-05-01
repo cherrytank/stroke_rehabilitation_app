@@ -21,8 +21,8 @@ void main() async {
     child: MyApp(),
   ));
 }
-//var ip =('http://140.127.114.38:10073/flutterphp/');
-var ip =('http://192.168.56.1/');
+var ip =('http://140.127.114.38:10073/flutterphp/');
+//var ip =('http://192.168.56.1/');
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
