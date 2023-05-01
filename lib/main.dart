@@ -6,6 +6,7 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'flutter_flow/nav/nav.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -57,6 +58,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    return ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context , child) {
     return MaterialApp.router(
       title: 'test',
       localizationsDelegates: [
@@ -72,6 +78,8 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
+          );
+        },
     );
   }
 }

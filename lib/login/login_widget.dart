@@ -13,6 +13,7 @@ import 'login_model.dart';
 export 'login_model.dart';
 import 'package:http/http.dart' as http;
 import '/main.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
 
@@ -149,7 +150,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 1.0,
+                width: ScreenUtil().setWidth(540),
                 height: MediaQuery.of(context).size.height * 0.97,
                 decoration: BoxDecoration(
                   color: Color(0xFF86B6FB),
