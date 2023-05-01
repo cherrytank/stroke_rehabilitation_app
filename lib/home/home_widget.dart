@@ -1,3 +1,4 @@
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ export 'home_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '/main.dart';
+import 'package:intl/intl.dart';
+
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -23,6 +26,9 @@ class _HomeWidgetState extends State<HomeWidget> {
   final _unfocusNode = FocusNode();
 
   var money1;
+  var startDate= DateTime(2023,4,23);
+  var endDate=   DateTime.now();
+
   Future money()async{
     var url = Uri.parse(ip+"money.php");
     final responce = await http.post(url,body: {
@@ -33,8 +39,15 @@ class _HomeWidgetState extends State<HomeWidget> {
       setState(() {
         money1=data['coin']['coin'];
       });
-      print(data['coin']['coin']);
+      //print(data['coin']['coin']);
     }
+  }
+
+  void cycle(){
+    var url = Uri.parse(ip+"delete.php");
+    http.post(url,body: {
+      "account":FFAppState().accountnumber,
+            });
   }
 
   @override
@@ -42,6 +55,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     future:money();
     super.initState();
     _model = createModel(context, () => HomeModel());
+
   }
 
   @override
@@ -51,11 +65,16 @@ class _HomeWidgetState extends State<HomeWidget> {
     _unfocusNode.dispose();
     super.dispose();
   }
-
+  var days;
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
-
+    //print(dateTimeFormat('EEEE', FFAppState().time),); //顯示日期是星期幾
+    days = endDate.difference(startDate).inDays;
+    print(days);
+    if(days~/7==1){
+      cycle();
+    }
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
@@ -75,6 +94,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
+                      width: MediaQuery.of(context).size.width * 1.0,
+                      height: MediaQuery.of(context).size.height * 0.8,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),

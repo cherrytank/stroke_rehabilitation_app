@@ -45,7 +45,7 @@ class _SettingWidgetState extends State<SettingWidget> {
       "account":FFAppState().accountnumber,
       "affectedside":FFAppState().affectedside,
       "age":age1 ,
-      "joindate":a.toString(),
+      "joindate":FFAppState().time.toString(),
 
     });
   }
@@ -101,6 +101,11 @@ class _SettingWidgetState extends State<SettingWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
+    //print(a);//測試顯示日期
+    if(FFAppState().time==null) {//判斷加入日期
+      FFAppState().time = a;
+    }
+    //print(FFAppState().time);//測試顯示日期
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
@@ -506,7 +511,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                                         120.0, 0.0, 0.0, 0.0),
                                     child:
                                     Text(
-                                      getAge(FFAppState().timepicker as DateTime),
+                                      age1=getAge(FFAppState().timepicker as DateTime),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1116,7 +1121,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                                     ),
                                   ),
                                   Text(
-                                    dateTimeFormat('yMd', a),
+                                    dateTimeFormat('yMd', FFAppState().time),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(

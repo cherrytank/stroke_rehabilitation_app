@@ -36,6 +36,12 @@ class FFAppState extends ChangeNotifier {
     _traindown = prefs.getString('ff_traindown') ?? _traindown;
     _mouth = prefs.getString('ff_mouth') ?? _mouth;
     _password = prefs.getString('ff_password') ?? _password;
+    _time = prefs.containsKey('ff_time')
+        ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_time')!)
+        : _time;
+    _timecycle = prefs.containsKey('ff_timecycle')
+        ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_timecycle')!)
+        : _timecycle;
   }
 
   void update(VoidCallback callback) {
@@ -181,6 +187,24 @@ class FFAppState extends ChangeNotifier {
   set password(String _value) {
     _password = _value;
     prefs.setString('ff_password', _value);
+  }
+
+  DateTime? _time;
+  DateTime? get time => _time;
+  set time(DateTime? _value) {
+    _time = _value;
+    _value != null
+        ? prefs.setInt('ff_time', _value.millisecondsSinceEpoch)
+        : prefs.remove('ff_time');
+  }
+
+  DateTime? _timecycle;
+  DateTime? get timecycle => _timecycle;
+  set timecycle(DateTime? _value) {
+    _timecycle = _value;
+    _value != null
+        ? prefs.setInt('ff_timecycle', _value.millisecondsSinceEpoch)
+        : prefs.remove('ff_timecycle');
   }
 }
 
