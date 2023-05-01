@@ -117,7 +117,8 @@ class _SettingWidgetState extends State<SettingWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+          Expanded(
+              child:Container(
                 width: MediaQuery.of(context).size.width * 1.0,
                 height: MediaQuery.of(context).size.height * 0.97,
                 decoration: BoxDecoration(
@@ -1325,6 +1326,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                   ],
                 ),
               ),
+          ),
             ],
           ),
         ),

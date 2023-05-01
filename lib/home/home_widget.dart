@@ -26,7 +26,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   final _unfocusNode = FocusNode();
 
   var money1;
-  var startDate= DateTime(2023,4,23);
+  var startDate= DateTime(2023,4,24);
   var endDate=   DateTime.now();
 
   Future money()async{
@@ -48,6 +48,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     http.post(url,body: {
       "account":FFAppState().accountnumber,
             });
+
   }
 
   @override
@@ -84,7 +85,8 @@ class _HomeWidgetState extends State<HomeWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+          Expanded(
+            child:Container(
                 width: MediaQuery.of(context).size.width * 1.0,
                 height: MediaQuery.of(context).size.height * 0.97,
                 decoration: BoxDecoration(
@@ -486,6 +488,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                   ],
                 ),
+              ),
               ),
             ],
           ),

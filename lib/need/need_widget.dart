@@ -48,7 +48,8 @@ class _NeedWidgetState extends State<NeedWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+          Expanded(
+           child:   Container(
                 width: MediaQuery.of(context).size.width * 1.0,
                 height: MediaQuery.of(context).size.height * 0.97,
                 decoration: BoxDecoration(
@@ -628,6 +629,7 @@ class _NeedWidgetState extends State<NeedWidget> {
                     ),
                   ],
                 ),
+              ),
               ),
             ],
           ),

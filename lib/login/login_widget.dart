@@ -149,9 +149,10 @@ class _LoginWidgetState extends State<LoginWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                width: ScreenUtil().setWidth(540),
-                height: MediaQuery.of(context).size.height * 0.97,
+          Expanded(
+             child: Container(
+                width: double.infinity,
+                height: 1.0.sh,
                 decoration: BoxDecoration(
                   color: Color(0xFF86B6FB),
                 ),
@@ -584,6 +585,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   ],
                 ),
               ),
+            ),
             ],
           ),
         ),
