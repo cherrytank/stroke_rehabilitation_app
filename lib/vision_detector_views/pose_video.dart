@@ -76,7 +76,6 @@ class _VideoAppState extends State<VideoApp> {
                       Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context)=>pose_view()),
                       );
-                      dispose();
                     },
                     child: Icon(Icons.arrow_forward, size: 50,),
                   ),
