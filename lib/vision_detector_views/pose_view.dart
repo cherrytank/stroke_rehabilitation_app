@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../index.dart';
 import 'body_view/assembly.dart';
 import 'pose_transform.dart';
-import 'package:audioplayers/audioplayers.dart'; //播放音檔
 import 'package:http/http.dart' as http;
 import '../main.dart';
-import '../app_state.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:intl/intl.dart';
+
 
 class pose_view extends StatefulWidget {
   @override
@@ -24,7 +23,6 @@ class _PoseDetectorViewState extends State<pose_view> {
   bool _isBusy = false;
   CustomPaint? _customPaint;
   String? _text;
-  final player = AudioCache(); //播放音檔
   @override
   void initState() {
     global.pose_tranform();
@@ -212,7 +210,7 @@ class _PoseDetectorViewState extends State<pose_view> {
               .animate(onPlay: (controller) => controller.repeat())
               .scaleXY(end: 1.2, duration: 0.2.seconds),
         ],
-        if (global.Det.endDetector)
+        if (!global.Det.endDetector)
           Positioned( //退出視窗
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -258,6 +256,7 @@ class _PoseDetectorViewState extends State<pose_view> {
                         onPressed: () async {
                           endout();
                           Navigator.pop(context);
+                          context.pushNamed('home');
                         },
                       ),
                     ],
@@ -295,15 +294,15 @@ class _PoseDetectorViewState extends State<pose_view> {
   }
 
   Future<void> endout() async {
-    var gettime = DateTime.now(); //獲取按下去的時間
-    var gettime1 = dateTimeFormat('yyyy-M-d', gettime);
-    var url = Uri.parse(ip + "train_upok.php");
-    final responce = await http.post(url, body: {
-      "account": FFAppState().accountnumber,
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+    var url = Uri.parse(ip+"train_upok.php");
+    final responce = await http.post(url,body:{
+      "time": formattedDate,
+      "account": FFAppState().accountnumber.toString(),
+      "action": FFAppState().trainup.toString(), //動作
       "degree": "初階",
       "parts": "上肢",
-      "time": gettime1.toString(),
-      "action": FFAppState().trainup, //動作
       "times": "1", //動作
     });
     if (responce.statusCode == 200) {
@@ -312,5 +311,6 @@ class _PoseDetectorViewState extends State<pose_view> {
       print(responce.statusCode);
       print("no");
     }
+
   }
 }
