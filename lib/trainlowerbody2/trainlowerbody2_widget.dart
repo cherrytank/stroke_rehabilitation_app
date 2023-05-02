@@ -46,12 +46,16 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
 
         }
         else{
-          context.pushNamed('test');
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>VideoApp()),
+          );
         }
       }
       else if(data["times"]=="1次"&&"有時間"==data["time"]){
         if(data["timeaction"]=="對"){
-          context.pushNamed('test');
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>VideoApp()),
+          );
         }
       }
       else if(data["times"]=="2次"){
@@ -159,9 +163,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 18;
                                           else
                                             global.posenumber = 42;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '側抬腳式';
                                           });
@@ -200,9 +202,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 19;
                                           else
                                             global.posenumber = 43;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '站姿抬腳';
                                           });
@@ -249,9 +249,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 20;
                                           else
                                             global.posenumber = 44;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '跨步動作';
                                           });
@@ -290,9 +288,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 21;
                                           else
                                             global.posenumber = 45;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '站姿膝彎曲';
                                           });
@@ -339,9 +335,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 22;
                                           else
                                             global.posenumber = 46;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '坐姿平衡';
                                           });
@@ -380,9 +374,7 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 23;
                                           else
                                             global.posenumber = 47;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '坐姿動態';
                                           });

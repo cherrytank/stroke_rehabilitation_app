@@ -47,12 +47,16 @@ class _Trainupperbody2WidgetState extends State<Trainupperbody2Widget> {
 
         }
         else{
-          context.pushNamed('test');
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>VideoApp()),
+          );
         }
       }
       else if(data["times"]=="1次"&&"有時間"==data["time"]){
         if(data["timeaction"]=="對"){
-          context.pushNamed('test');
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>VideoApp()),
+          );
         }
       }
       else if(data["times"]=="2次"){
@@ -169,9 +173,6 @@ class _Trainupperbody2WidgetState extends State<Trainupperbody2Widget> {
                                             global.posenumber = 6;
                                           else
                                             global.posenumber = 30;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
                                           setState(() {
                                             FFAppState().trainup = '肩膀前舉';
                                           });
@@ -210,9 +211,6 @@ class _Trainupperbody2WidgetState extends State<Trainupperbody2Widget> {
                                             global.posenumber = 7;
                                           else
                                             global.posenumber = 31;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
                                           setState(() {
                                             FFAppState().trainup = '手肘前伸';
                                           });
@@ -259,9 +257,7 @@ class _Trainupperbody2WidgetState extends State<Trainupperbody2Widget> {
                                             global.posenumber = 8;
                                           else
                                             global.posenumber = 32;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().trainup = '肩膀側舉';
                                           });
@@ -300,9 +296,7 @@ class _Trainupperbody2WidgetState extends State<Trainupperbody2Widget> {
                                             global.posenumber = 9;
                                           else
                                             global.posenumber = 33;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().trainup = '雙手抬舉';
                                           });
@@ -349,9 +343,7 @@ class _Trainupperbody2WidgetState extends State<Trainupperbody2Widget> {
                                             global.posenumber = 10;
                                           else
                                             global.posenumber = 34;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().trainup = '聳肩旋轉';
                                           });
@@ -390,9 +382,7 @@ class _Trainupperbody2WidgetState extends State<Trainupperbody2Widget> {
                                             global.posenumber = 11;
                                           else
                                             global.posenumber = 35;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().trainup = '洗澡動作';
                                           });

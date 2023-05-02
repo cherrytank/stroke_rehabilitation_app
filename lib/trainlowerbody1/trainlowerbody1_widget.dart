@@ -43,12 +43,16 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
 
         }
         else{
-          context.pushNamed('test');
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>VideoApp()),
+          );
         }
       }
       else if(data["times"]=="1次"&&"有時間"==data["time"]){
         if(data["timeaction"]=="對"){
-          context.pushNamed('test');
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>VideoApp()),
+          );
         }
       }
       else if(data["times"]=="2次"){
@@ -158,9 +162,7 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
                                             global.posenumber = 12;
                                           else
                                             global.posenumber = 36;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '大腿伸彎';
                                           });
@@ -199,9 +201,6 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
                                             global.posenumber = 13;
                                           else
                                             global.posenumber = 37;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
                                           setState(() {
                                             FFAppState().traindown = '躺姿抬腳';
                                           });
@@ -248,9 +247,7 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
                                             global.posenumber = 14;
                                           else
                                             global.posenumber = 38;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '大腿外展';
                                           });
@@ -338,9 +335,7 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
                                             global.posenumber = 16;
                                           else
                                             global.posenumber = 40;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '大腿內收';
                                           });
@@ -379,9 +374,7 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
                                             global.posenumber = 17;
                                           else
                                             global.posenumber = 41;
-                                          Navigator.push(context,
-                                            MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
+
                                           setState(() {
                                             FFAppState().traindown = '小腿前踢';
                                           });
