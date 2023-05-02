@@ -304,6 +304,7 @@ class _PoseDetectorViewState extends State<pose_view> {
       "degree": "初階",
       "parts": "上肢",
       "times": "1", //動作
+      "coin_add": "30",
     });
     if (responce.statusCode == 200) {
       print("ok");

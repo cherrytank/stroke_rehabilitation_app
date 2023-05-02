@@ -286,9 +286,6 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
                                             global.posenumber = 15;
                                           else
                                             global.posenumber = 39;
-                                          Navigator.push(context,
-                                             MaterialPageRoute(builder: (context)=>VideoApp()),
-                                          );
                                           setState(() {
                                             FFAppState().traindown = '膝蓋彎曲';
                                           });

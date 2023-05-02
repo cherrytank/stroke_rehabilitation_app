@@ -73,9 +73,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     //print(dateTimeFormat('EEEE', FFAppState().time),); //顯示日期是星期幾
     days = endDate.difference(startDate).inDays;
     print(days);
-    if(days~/7==1){
-      cycle();
-    }
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
