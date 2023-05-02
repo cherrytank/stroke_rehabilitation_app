@@ -42,6 +42,7 @@ class _TrainlowerbodyWidgetState extends State<TrainlowerbodyWidget> {
     var url = Uri.parse(ip+"lock.php");
     final responce = await http.post(url,body: {
       "pid" : FFAppState().accountnumber,
+      "parts":"下肢",
       //"pid" : "airehab_01",
     });
     if (responce.statusCode == 200) {
