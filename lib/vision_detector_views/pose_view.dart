@@ -210,7 +210,7 @@ class _PoseDetectorViewState extends State<pose_view> {
               .animate(onPlay: (controller) => controller.repeat())
               .scaleXY(end: 1.2, duration: 0.2.seconds),
         ],
-        if (!global.Det.endDetector)
+        if (global.Det.endDetector)
           Positioned( //退出視窗
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -246,7 +246,7 @@ class _PoseDetectorViewState extends State<pose_view> {
                           backgroundColor: Color.fromARGB(250, 255, 190, 52),
                         ),
                         child: AutoSizeText(
-                          "回首頁",
+                          "返回",
                           maxLines: 1,
                           style: TextStyle(
                             fontSize: 30,
@@ -256,7 +256,6 @@ class _PoseDetectorViewState extends State<pose_view> {
                         onPressed: () async {
                           endout();
                           Navigator.pop(context);
-                          context.pushNamed('home');
                         },
                       ),
                     ],
@@ -296,15 +295,47 @@ class _PoseDetectorViewState extends State<pose_view> {
   Future<void> endout() async {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-    var url = Uri.parse(ip+"train_upok.php");
+    var url;
+    String _degree;
+    String _parts;
+    String _coin_add;
+    if(global.posenumber < 6 || (global.posenumber>23 && global.posenumber<30)){
+      url = Uri.parse(ip+"train_upok.php");
+      _degree = "初階";
+      _parts = "上肢";
+      _coin_add = "30";
+      print("初階,上肢");
+    }
+    else if(global.posenumber < 12 || (global.posenumber>29 && global.posenumber<36)){
+      url = Uri.parse(ip+"train_upok.php");
+      _degree = "進階";
+      _parts = "上肢";
+      _coin_add = "60";
+      print("進階,上肢");
+    }
+    else if(global.posenumber < 18 || (global.posenumber>35 && global.posenumber<42)){
+      url = Uri.parse(ip+"train_downok.php");
+      _degree = "初階";
+      _parts = "下肢";
+      _coin_add = "30";
+      print("初階,下肢");
+    }
+    else{
+      url = Uri.parse(ip+"train_downok.php");
+      _degree = "進階";
+      _parts = "下肢";
+      _coin_add = "60";
+      print("進階,下肢");
+    }
+
     final responce = await http.post(url,body:{
       "time": formattedDate,
       "account": FFAppState().accountnumber.toString(),
       "action": FFAppState().trainup.toString(), //動作
-      "degree": "初階",
-      "parts": "上肢",
+      "degree": _degree,
+      "parts": _parts,
       "times": "1", //動作
-      "coin_add": "30",
+      "coin_add": _coin_add,
     });
     if (responce.statusCode == 200) {
       print("ok");
@@ -312,6 +343,5 @@ class _PoseDetectorViewState extends State<pose_view> {
       print(responce.statusCode);
       print("no");
     }
-
   }
 }
