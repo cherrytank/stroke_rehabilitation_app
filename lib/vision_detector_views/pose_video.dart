@@ -17,7 +17,7 @@ class _VideoAppState extends State<VideoApp> {
   void initState() {
     super.initState();
     int _posenumber;
-    if(global.posenumber>24)
+    if(global.posenumber>=24)
       _posenumber = global.posenumber - 24;
     else
       _posenumber = global.posenumber;

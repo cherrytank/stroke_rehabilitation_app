@@ -22,7 +22,7 @@ class Detector_forward_shoulder_right implements Detector_default{
   bool changeUI = false;
   bool right_side = true;
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內並微面向左邊\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -65,11 +65,11 @@ class Detector_forward_shoulder_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<130){
+      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<120){
         this.orderText = "手請伸直";
         return;
       }
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>130//手臂角度需大於
+      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>120//手臂角度需大於
           && posedata[33]!<(posedata[25]!+100)//手部須高於臀部
         &&this.startdDetector) {
         //每秒目標
@@ -82,7 +82,7 @@ class Detector_forward_shoulder_right implements Detector_default{
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<130) {
+      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<120) {
         //確認復歸
         this.startdDetector = true;
       } else {

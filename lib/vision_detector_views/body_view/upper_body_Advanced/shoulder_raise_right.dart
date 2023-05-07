@@ -65,11 +65,11 @@ class Detector_shoulder_raise_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<130){
+      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<120){
         this.orderText = "手請伸直";
         return;
       }
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>130//手臂角度需大於
+      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>120//手臂角度需大於
           && distance(posedata[32]!, posedata[33]!, posedata[24]!, posedata[25]!)>200
           && posedata[33]!<(posedata[25]!+100)//手部須高於臀部
         &&this.startdDetector) {

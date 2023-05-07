@@ -3,7 +3,7 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_wipe_table_right implements Detector_default{
+class Detector_towel_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
@@ -22,7 +22,7 @@ class Detector_wipe_table_right implements Detector_default{
   bool buttom_false = true;//按下按鈕消失
   bool changeUI = false;
   bool timerui = false;
-  String mindText = "請將上半身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -54,84 +54,45 @@ class Detector_wipe_table_right implements Detector_default{
   void poseDetector() {
     //偵測判定
     print(posedata[32]!);
-    print(cameramode_front);
     if (this.startdDetector) {
       DetectorED = true;
-      if(!cameramode_front){
-        if(this.right_side){
-          this.orderText = "請往左擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[32]!>500){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = false;
-            this.sounder(this.posecounter);
-          }
-        }else{
-          this.orderText = "請往右擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[32]!<200){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = true;
-            this.sounder(this.posecounter);
-          }
+      if(distance(posedata[30]!, posedata[30]!, (posedata[22]!+posedata[24]!)/2, (posedata[22]!+posedata[24]!)/2)<400
+        &&distance(posedata[32]!, posedata[32]!, (posedata[22]!+posedata[24]!)/2, (posedata[22]!+posedata[24]!)/2)<400)
+        return ;
+      if(this.right_side){
+        this.orderText = "請往右擦拭";
+        if(distance(posedata[30]!, posedata[30]!, (posedata[22]!+posedata[24]!)/2, (posedata[22]!+posedata[24]!)/2)<400 //身體中線距離
+        ){
+          this.startdDetector = false;
+          this.orderText = "達標";
+          this.posecounter++;
+          this.right_side = false;
+          this.sounder(this.posecounter);
         }
-      }
-      else{
-        if(this.right_side){
-          this.orderText = "請往右擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[32]!>500){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = false;
-            this.sounder(this.posecounter);
-          }
-        }else{
-          this.orderText = "請往左擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[32]!<200){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = true;
-            this.sounder(this.posecounter);
-          }
+      }else{
+        this.orderText = "請往左擦拭";
+        if(distance(posedata[32]!, posedata[32]!, (posedata[22]!+posedata[24]!)/2, (posedata[22]!+posedata[24]!)/2)<400 //身體中線距離
+        ){
+          this.startdDetector = false;
+          this.orderText = "達標";
+          this.posecounter++;
+          this.right_side = true;
+          this.sounder(this.posecounter);
         }
       }
     }else if (DetectorED) {
       //預防空值被訪問
       if(!this.right_side){
-        if(!cameramode_front){
-          this.orderText = "請往右擦拭";
-          if (posedata[30]!>200) {
-            //確認復歸
-            this.startdDetector = true;
-          }
-        }else{
-          this.orderText = "請往左擦拭";
-          if (posedata[30]!<500) {
-            //確認復歸
-            this.startdDetector = true;
-          }
+        this.orderText = "請往左擦拭";
+        if (posedata[32]!<500) {
+          //確認復歸
+          this.startdDetector = true;
         }
       }else{
-        if(!cameramode_front){
-          this.orderText = "請往左擦拭";
-          if (posedata[30]!<500) {
-            //確認復歸
-            this.startdDetector = true;
-          }
-        }else{
-          this.orderText = "請往右擦拭";
-          if (posedata[30]!>200) {
-            //確認復歸
-            this.startdDetector = true;
-          }
+        this.orderText = "請往右擦拭";
+        if (posedata[32]!>100) {
+          //確認復歸
+          this.startdDetector = true;
         }
       }
     }
@@ -180,8 +141,8 @@ class Detector_wipe_table_right implements Detector_default{
         },
       );
   }
-
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
   }
+
 }

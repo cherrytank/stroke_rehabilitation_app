@@ -3,7 +3,7 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_crutch_right implements Detector_default{
+class Detector_crutch_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
@@ -22,7 +22,7 @@ class Detector_crutch_right implements Detector_default{
   bool changeUI = false;
   bool right_side =true;
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內並微面左邊\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內並微面右邊\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -55,7 +55,7 @@ class Detector_crutch_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請前伸右臂";
+      this.orderText = "請前伸左臂";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
@@ -64,8 +64,8 @@ class Detector_crutch_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>130//手臂角度需大於
-          && posedata[33]!<(posedata[49]!)//手部須高於臀部
+      if (angle(posedata[22]!,posedata[23]!,posedata[26]!,posedata[27]!,posedata[30]!,posedata[31]!)>120//手臂角度需大於
+          && posedata[31]!<(posedata[47]!)//手部須高於臀部
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
@@ -77,7 +77,7 @@ class Detector_crutch_right implements Detector_default{
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<130) {
+      if (angle(posedata[22]!,posedata[23]!,posedata[26]!,posedata[27]!,posedata[30]!,posedata[31]!)<120) {
         //確認復歸
         this.startdDetector = true;
       } else {

@@ -303,28 +303,28 @@ class _PoseDetectorViewState extends State<pose_view> {
       url = Uri.parse(ip+"train_upok.php");
       _degree = "初階";
       _parts = "上肢";
-      _coin_add = "30";
+      _coin_add = "5";
       print("初階,上肢");
     }
     else if(global.posenumber < 12 || (global.posenumber>29 && global.posenumber<36)){
       url = Uri.parse(ip+"train_upok.php");
       _degree = "進階";
       _parts = "上肢";
-      _coin_add = "60";
+      _coin_add = "5";
       print("進階,上肢");
     }
     else if(global.posenumber < 18 || (global.posenumber>35 && global.posenumber<42)){
       url = Uri.parse(ip+"train_downok.php");
       _degree = "初階";
       _parts = "下肢";
-      _coin_add = "30";
+      _coin_add = "5";
       print("初階,下肢");
     }
     else{
       url = Uri.parse(ip+"train_downok.php");
       _degree = "進階";
       _parts = "下肢";
-      _coin_add = "60";
+      _coin_add = "5";
       print("進階,下肢");
     }
 

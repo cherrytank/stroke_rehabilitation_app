@@ -1,4 +1,4 @@
-export 'body_view/upper_body/shrug_left.dart';
+//right
 export 'body_view/upper_body/shrug_right.dart';
 export 'body_view/upper_body/crutch_right.dart';
 export 'body_view/upper_body/hold_hands_right.dart';
@@ -23,7 +23,33 @@ export 'body_view/lower_body_Advanced/standing_action_right.dart';
 export 'body_view/lower_body_Advanced/standing_knee_bent_right.dart';
 export 'body_view/lower_body_Advanced/Seated_Dynamics_right.dart';
 export 'body_view/lower_body_Advanced/sitting_balance_right.dart';
-
+//left
+export 'body_view/upper_body/shrug_left.dart';
+export 'body_view/upper_body/crutch_left.dart';
+export 'body_view/upper_body/hold_hands_left.dart';
+export 'body_view/upper_body/bath_left.dart';
+export 'body_view/upper_body/elbow_movement_left.dart';
+export 'body_view/upper_body/wipe_table_left.dart';
+export 'body_view/upper_body_Advanced/forward_shoulder_left.dart';
+export 'body_view/upper_body_Advanced/forward_elbow_left.dart';
+export 'body_view/upper_body_Advanced/shoulder_raise_left.dart';
+export 'body_view/upper_body_Advanced/heads_raise_left.dart';
+export 'body_view/upper_body_Advanced/Shrugging_circles_left.dart';
+export 'body_view/upper_body_Advanced/towel_left.dart';
+/*
+export 'body_view/lower_body/thigh_stretch_left.dart';
+export 'body_view/lower_body/raise_feet_left.dart';
+export 'body_view/lower_body/thigh_abduction_left.dart';
+export 'body_view/lower_body/bent_knees_left.dart';
+export 'body_view/lower_body/thigh_receive_left.dart';
+export 'body_view/lower_body/calf_knees_left.dart';
+export 'body_view/lower_body_Advanced/lift_feet_left.dart';
+export 'body_view/lower_body_Advanced/stand_up_left.dart';
+export 'body_view/lower_body_Advanced/standing_action_left.dart';
+export 'body_view/lower_body_Advanced/standing_knee_bent_left.dart';
+export 'body_view/lower_body_Advanced/Seated_Dynamics_left.dart';
+export 'body_view/lower_body_Advanced/sitting_balance_left.dart';
+*/
 /*
 動作中英對照表(_right ,_left )
   初階上肢

@@ -82,6 +82,83 @@ class global{
             case 23:
               global.Det = Detector_sitting_balance_right();
               break;
+            //upper_body_left
+           case 24:
+              global.Det = Detector_shrug_left();
+              break;
+            case 25:
+              global.Det = Detector_hold_hands_left();
+              break;
+            case 26:
+              global.Det = Detector_wipe_table_left();
+              break;
+            case 27:
+              global.Det = Detector_crutch_left();
+              break;
+            case 28:
+              global.Det = Detector_elbow_movement_left();
+              break;
+            case 29:
+              global.Det = Detector_bath_left();
+              break;
+          //upper_body_Advanced_left
+            case 30:
+              global.Det = Detector_forward_shoulder_left();
+              break;
+            case 31:
+              global.Det = Detector_forward_elbow_left();
+              break;
+            case 32:
+              global.Det = Detector_shoulder_raise_left();
+              break;
+            case 33:
+              global.Det = Detector_heads_raise_left();
+              break;
+            case 34:
+              global.Det = Detector_Shrugging_circles_left();
+              break;
+            case 35:
+              global.Det = Detector_towel_left();
+              break;
+          //lower_body_left
+          /*
+            case 36:
+              global.Det = Detector_thigh_stretch_left();
+              break;
+            case 37:
+              global.Det = Detector_raise_feet_left();
+              break;
+            case 38:
+              global.Det = Detector_thigh_abduction_left();
+              break;
+            case 39:
+              global.Det = Detector_bent_knees_left();
+              break;
+            case 40:
+              global.Det = Detector_thigh_receive_left();
+              break;
+            case 41:
+              global.Det = Detector_calf_knees_left();
+              break;
+          //lower_body_Advanced_left
+            case 42:
+              global.Det = Detector_lift_feet_left();
+              break;
+            case 43:
+              global.Det = Detector_stand_up_left();
+              break;
+            case 44:
+              global.Det = Detector_standing_action_left();
+              break;
+            case 45:
+              global.Det = Detector_standing_knee_bent_left();
+              break;
+            case 46:
+              global.Det = Detector_Seated_Dynamics_left();
+              break;
+            case 47:
+              global.Det = Detector_sitting_balance_left();
+              break;*/
           }
       }
 }

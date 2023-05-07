@@ -3,7 +3,7 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_crutch_right implements Detector_default{
+class Detector_elbow_movement_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
@@ -22,24 +22,24 @@ class Detector_crutch_right implements Detector_default{
   bool changeUI = false;
   bool right_side =true;
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內並微面左邊\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
-      int counter = 5;
-      buttom_false = false;
-      Timer.periodic(//觸發偵測timer
-        const Duration(seconds: 1),
-            (timer) {
-          mathText = "${counter--}";
-          if(counter<0){
-            print("cancel timer");
-            timer.cancel();
-            mathText = " ";
-            startD();
-          }
-        },
-      );
+    int counter = 5;
+    buttom_false = false;
+    Timer.periodic(//觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        mathText = "${counter--}";
+        if(counter<0){
+          print("cancel timer");
+          timer.cancel();
+          mathText = " ";
+          startD();
+        }
+      },
+    );
   }
 
   void startD() {
@@ -55,7 +55,7 @@ class Detector_crutch_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請前伸右臂";
+      this.orderText = "請彎曲左臂";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
@@ -64,9 +64,8 @@ class Detector_crutch_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>130//手臂角度需大於
-          && posedata[33]!<(posedata[49]!)//手部須高於臀部
-        &&this.startdDetector) {
+      if (distance(posedata[22]!, posedata[23]!, posedata[30]!, posedata[31]!)<100
+          &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
         print(this.posetimecounter);
@@ -77,11 +76,11 @@ class Detector_crutch_right implements Detector_default{
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<130) {
+      if (distance(posedata[22]!, posedata[23]!, posedata[30]!, posedata[31]!)>100) {
         //確認復歸
         this.startdDetector = true;
       } else {
-        this.orderText = "請縮回手臂";
+        this.orderText = "請放下手臂";
       }
     }
   }
@@ -117,17 +116,17 @@ class Detector_crutch_right implements Detector_default{
   }
 
   void settimer(){
-      Timer.periodic(//觸發偵測timer
-        const Duration(seconds: 1),
-            (timer) {
-          poseDetector(); //偵測目標是否完成動作
-          posetargetdone(); //偵測目標是否完成指定次數
-          if(!this.timerbool){
-            print("cancel timer");
-            timer.cancel();
-          }
-        },
-      );
+    Timer.periodic(//觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        poseDetector(); //偵測目標是否完成動作
+        posetargetdone(); //偵測目標是否完成指定次數
+        if(!this.timerbool){
+          print("cancel timer");
+          timer.cancel();
+        }
+      },
+    );
   }
 
   void sounder(int counter){

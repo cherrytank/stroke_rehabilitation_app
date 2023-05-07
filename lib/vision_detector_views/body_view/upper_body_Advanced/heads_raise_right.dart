@@ -22,7 +22,7 @@ class Detector_heads_raise_right implements Detector_default{
   bool changeUI = false;
   bool right_side = true;
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內並微面向左邊\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -64,7 +64,7 @@ class Detector_heads_raise_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<130){
+      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<120){
         this.orderText = "手請伸直";
         return;
       }
@@ -72,7 +72,7 @@ class Detector_heads_raise_right implements Detector_default{
         this.orderText = "請雙手握合";
         return;
       }
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>130//手臂角度需大於
+      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>120//手臂角度需大於
           &&distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
           && posedata[33]!<(posedata[25]!+100)//手部須高於腰
         &&this.startdDetector) {

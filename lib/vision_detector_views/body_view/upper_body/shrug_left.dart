@@ -54,7 +54,7 @@ class Detector_shrug_left implements Detector_default {
   void poseDetector() {
     //偵測判定
     if(distance(Standpoint_bodymind_x!, Standpoint_bodymind_y!,
-        (posedata[22]!+posedata[24]!)/2, (posedata[23]!+posedata[25]!)/2)>100&&this.startdDetector){//身體中點與標準點距離
+        (posedata[22]!+posedata[24]!)/2, (posedata[23]!+posedata[25]!)/2)>300&&this.startdDetector){//身體中點與標準點距離
       this.orderText = "側傾過大";
       return ;
     }
