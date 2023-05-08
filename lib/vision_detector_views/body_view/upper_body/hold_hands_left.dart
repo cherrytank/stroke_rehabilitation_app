@@ -55,7 +55,7 @@ class Detector_hold_hands_left  implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "右手撐直";
+      this.orderText = "左手撐直";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
