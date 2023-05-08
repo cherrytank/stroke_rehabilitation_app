@@ -148,8 +148,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                         15.0, 0.0, 0.0, 0.0),
                                     child: CachedNetworkImage(
                                       imageUrl: FFAppState().avatar,
-                                      width: 120.0,
-                                      height: 120.0,
+                                      width: MediaQuery.of(context).size.width * 0.3,
+                                      height: MediaQuery.of(context).size.height * 0.15,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -196,8 +196,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: 190.0,
-                                    height: 40.0,
+                                    width: MediaQuery.of(context).size.width * 0.45,
+                                    height: MediaQuery.of(context).size.height * 0.05,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -214,8 +214,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 190.0,
-                                    height: 40.0,
+                                    width: MediaQuery.of(context).size.width * 0.45,
+                                    height: MediaQuery.of(context).size.height * 0.05,
                                     decoration: BoxDecoration(),
                                     child: Container(
                                       width: 190.0,
@@ -317,8 +317,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 190.0,
-                                    height: 40.0,
+                                    width: MediaQuery.of(context).size.width * 0.45,
+                                    height: MediaQuery.of(context).size.height * 0.05,
                                     decoration: BoxDecoration(),
                                     child: TextFormField(
                                       controller: _model.textController2,
@@ -678,8 +678,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                               _model.dropDownValue1!;
                                         });
                                       },
-                                      width: 230.0,
-                                      height: 50.0,
+                                      width: MediaQuery.of(context).size.width * 0.6,
+                                      height: MediaQuery.of(context).size.height * 0.05,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -739,8 +739,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                               _model.dropDownValue2!;
                                         });
                                       },
-                                      width: 230.0,
-                                      height: 50.0,
+                                      width: MediaQuery.of(context).size.width * 0.6,
+                                      height: MediaQuery.of(context).size.height * 0.05,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1181,7 +1181,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
@@ -1201,8 +1201,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                               children: [
                                 Image.asset(
                                   'assets/images/17.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                                 Text(
@@ -1235,8 +1235,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/18.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -1269,8 +1269,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/19.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -1304,8 +1304,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/20.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),

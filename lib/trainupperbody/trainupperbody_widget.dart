@@ -271,6 +271,7 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -289,8 +290,8 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/17.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -323,8 +324,8 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/18.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -357,8 +358,8 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/19.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -391,8 +392,8 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/20.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.2,
+                                  height: MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
