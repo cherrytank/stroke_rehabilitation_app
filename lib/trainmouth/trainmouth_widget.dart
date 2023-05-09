@@ -1,13 +1,15 @@
+import 'dart:convert';
+
+import '../main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 import 'trainmouth_model.dart';
 export 'trainmouth_model.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import '/main.dart';
+
 class TrainmouthWidget extends StatefulWidget {
   const TrainmouthWidget({Key? key}) : super(key: key);
 
@@ -56,6 +58,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
     }
   }
 
+
   @override
   void initState() {
     super.initState();
@@ -85,7 +88,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
             children: [
           Expanded(
               child:Container(
-                width: MediaQuery.of(context).size.width * 1.0,
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.97,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -95,7 +98,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
+                      width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.8,
                       decoration: BoxDecoration(
                         color: Color(0xFF90BDF9),
@@ -109,27 +112,27 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 0.0),
+                                padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: Image.asset(
                                   'assets/images/15.png',
-                                  width: 100.0,
-                                  height: 90.0,
+                                  width: MediaQuery.of(context).size.width * 0.3,
+                                  height: MediaQuery.of(context).size.height * 0.12,
                                   fit: BoxFit.contain,
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 10.0, 0.0, 0.0),
+                                    20, 10, 0, 0),
                                 child: Text(
                                   '吞嚥訓練',
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
                                       .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 50.0,
-                                      ),
+                                    fontFamily: 'Poppins',
+                                    fontSize: 50,
+                                  ),
                                 ),
                               ),
                             ],
@@ -140,7 +143,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -152,25 +155,31 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
-                                            FFAppState().mouth = '閉氣嘟臉';
+                                            FFAppState().mouth = '鼓頰動作';
                                           });
                                           inputtime();
                                         },
                                         child: Image.asset(
                                           'assets/images/43.png',
-                                          width: 120.0,
-                                          height: 120.0,
-                                          fit: BoxFit.fill,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                       Text(
-                                        '閉氣嘟臉',
+                                        '鼓頰動作',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 28.0,
-                                            ),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -190,8 +199,14 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         },
                                         child: Image.asset(
                                           'assets/images/44.png',
-                                          width: 120.0,
-                                          height: 120.0,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
@@ -200,20 +215,13 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 28.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -230,8 +238,14 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         },
                                         child: Image.asset(
                                           'assets/images/45.png',
-                                          width: 120.0,
-                                          height: 120.0,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
@@ -240,12 +254,19 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 28.0,
-                                            ),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                        ),
                                       ),
                                     ],
                                   ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -262,8 +283,14 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         },
                                         child: Image.asset(
                                           'assets/images/46.png',
-                                          width: 120.0,
-                                          height: 120.0,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
@@ -272,20 +299,13 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 28.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -302,8 +322,14 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         },
                                         child: Image.asset(
                                           'assets/images/53.png',
-                                          width: 120.0,
-                                          height: 120.0,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
@@ -312,9 +338,9 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 28.0,
-                                            ),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -334,8 +360,14 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         },
                                         child: Image.asset(
                                           'assets/images/54.png',
-                                          width: 120.0,
-                                          height: 120.0,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
@@ -344,10 +376,93 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 28.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          setState(() {
+                                            FFAppState().mouth = '嘟嘴式';
+                                          });
+                                          inputtime();
+                                        },
+                                        child: Image.asset(
+                                          'assets/images/55.png',
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Text(
+                                        '嘟嘴式',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          setState(() {
+                                            FFAppState().mouth = '張嘴說阿';
+                                          });
+                                          inputtime();
+                                        },
+                                        child: Image.asset(
+                                          'assets/images/56.png',
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.3,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.15,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Text(
+                                        '張嘴說阿',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 28,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -360,10 +475,11 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -378,8 +494,10 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/17.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width:
+                                  MediaQuery.of(context).size.width * 0.2,
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -388,16 +506,15 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 25,
+                                ),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -412,8 +529,10 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/18.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width:
+                                  MediaQuery.of(context).size.width * 0.2,
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -422,16 +541,15 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 25,
+                                ),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -446,8 +564,10 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/19.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width:
+                                  MediaQuery.of(context).size.width * 0.2,
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -456,16 +576,15 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 25,
+                                ),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -480,8 +599,10 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 },
                                 child: Image.asset(
                                   'assets/images/20.jpg',
-                                  width: 90.0,
-                                  height: 90.0,
+                                  width:
+                                  MediaQuery.of(context).size.width * 0.2,
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -490,9 +611,9 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 25,
+                                ),
                               ),
                             ],
                           ),
@@ -502,7 +623,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                   ],
                 ),
               ),
-            ),
+          ),
             ],
           ),
         ),
