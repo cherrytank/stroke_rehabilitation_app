@@ -3,9 +3,9 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_thigh_stretch_right implements Detector_default{
+class Detector_thigh_receive_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
-  int posetimeTarget = 5; //復健動作持續秒數目標
+  int posetimeTarget = 10; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
   int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
@@ -26,20 +26,20 @@ class Detector_thigh_stretch_right implements Detector_default{
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
-      int counter = 5;
-      buttom_false = false;
-      Timer.periodic(//觸發偵測timer
-        const Duration(seconds: 1),
-            (timer) {
-          mathText = "${counter--}";
-          if(counter<0){
-            print("cancel timer");
-            timer.cancel();
-            mathText = " ";
-            startD();
-          }
-        },
-      );
+    int counter = 5;
+    buttom_false = false;
+    Timer.periodic(//觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        mathText = "${counter--}";
+        if(counter<0){
+          print("cancel timer");
+          timer.cancel();
+          mathText = " ";
+          startD();
+        }
+      },
+    );
   }
 
   void startD() {
@@ -55,7 +55,7 @@ class Detector_thigh_stretch_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請升高膝蓋";
+      this.orderText = "請大腿內收";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
@@ -64,8 +64,8 @@ class Detector_thigh_stretch_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<100 //膝蓋角度
-        &&this.startdDetector) {
+      if (distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)<150 //膝蓋距離
+          &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
         print(this.posetimecounter);
@@ -77,12 +77,12 @@ class Detector_thigh_stretch_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)>150 //膝蓋角度
+      distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)>100 //膝蓋距離
       ) {
         //確認復歸
         this.startdDetector = true;
       } else {
-        this.orderText = "請放下腿";
+        this.orderText = "請回復雙腳";
       }
     }
   }
@@ -118,17 +118,17 @@ class Detector_thigh_stretch_right implements Detector_default{
   }
 
   void settimer(){
-      Timer.periodic(//觸發偵測timer
-        const Duration(seconds: 1),
-            (timer) {
-          poseDetector(); //偵測目標是否完成動作
-          posetargetdone(); //偵測目標是否完成指定次數
-          if(!this.timerbool){
-            print("cancel timer");
-            timer.cancel();
-          }
-        },
-      );
+    Timer.periodic(//觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        poseDetector(); //偵測目標是否完成動作
+        posetargetdone(); //偵測目標是否完成指定次數
+        if(!this.timerbool){
+          print("cancel timer");
+          timer.cancel();
+        }
+      },
+    );
   }
 
   void sounder(int counter){

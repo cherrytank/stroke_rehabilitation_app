@@ -36,13 +36,13 @@ export 'body_view/upper_body_Advanced/shoulder_raise_left.dart';
 export 'body_view/upper_body_Advanced/heads_raise_left.dart';
 export 'body_view/upper_body_Advanced/Shrugging_circles_left.dart';
 export 'body_view/upper_body_Advanced/towel_left.dart';
-/*
 export 'body_view/lower_body/thigh_stretch_left.dart';
 export 'body_view/lower_body/raise_feet_left.dart';
 export 'body_view/lower_body/thigh_abduction_left.dart';
 export 'body_view/lower_body/bent_knees_left.dart';
 export 'body_view/lower_body/thigh_receive_left.dart';
 export 'body_view/lower_body/calf_knees_left.dart';
+/*
 export 'body_view/lower_body_Advanced/lift_feet_left.dart';
 export 'body_view/lower_body_Advanced/stand_up_left.dart';
 export 'body_view/lower_body_Advanced/standing_action_left.dart';

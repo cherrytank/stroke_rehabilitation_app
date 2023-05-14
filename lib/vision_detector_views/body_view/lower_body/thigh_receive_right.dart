@@ -64,7 +64,7 @@ class Detector_thigh_receive_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)<50 //膝蓋距離
+      if (distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)<150 //膝蓋距離
           &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;

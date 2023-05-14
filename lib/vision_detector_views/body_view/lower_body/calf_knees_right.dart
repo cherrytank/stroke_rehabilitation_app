@@ -7,7 +7,7 @@ class Detector_calf_knees_right implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
-  int poseTarget = 10; //目標次數設定
+  int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
   bool endDetector = false; //跳轉
   bool DetectorED = false;
@@ -22,7 +22,7 @@ class Detector_calf_knees_right implements Detector_default{
   bool changeUI = false;
   bool right_side = true;
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內並微向左\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -55,7 +55,7 @@ class Detector_calf_knees_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請升高膝蓋";
+      this.orderText = "請前踢膝蓋";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;

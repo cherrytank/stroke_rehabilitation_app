@@ -3,43 +3,44 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_thigh_stretch_right implements Detector_default{
+class Detector_bent_knees_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
-  int posetimeTarget = 5; //復健動作持續秒數目標
+  int posetimeTarget = 0; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
   int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
   bool endDetector = false; //跳轉
   bool DetectorED = false;
-  bool timerbool=true;//倒數計時器
+  bool timerbool = true; //倒數計時器
   double? Standpoint_X = 0;
   double? Standpoint_Y = 0;
-  double? Standpoint_bodymind_x = 0;//身體終點
-  double? Standpoint_bodymind_y = 0;//身體終點
-  String orderText = "";//目標提醒
-  String mathText = "";//倒數文字
-  bool buttom_false = true;//按下按鈕消失
+  double? Standpoint_bodymind_x = 0; //身體終點
+  double? Standpoint_bodymind_y = 0; //身體終點
+  String orderText = ""; //目標提醒
+  String mathText = ""; //倒數文字
+  bool buttom_false = true; //按下按鈕消失
   bool changeUI = false;
   bool right_side = true;
-  bool timerui = true;
+  bool timerui = false;
   String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
-  void startd(){//倒數計時
-      int counter = 5;
-      buttom_false = false;
-      Timer.periodic(//觸發偵測timer
-        const Duration(seconds: 1),
-            (timer) {
-          mathText = "${counter--}";
-          if(counter<0){
-            print("cancel timer");
-            timer.cancel();
-            mathText = " ";
-            startD();
-          }
-        },
-      );
+  void startd() {
+    //倒數計時
+    int counter = 5;
+    buttom_false = false;
+    Timer.periodic( //觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        mathText = "${counter--}";
+        if (counter < 0) {
+          print("cancel timer");
+          timer.cancel();
+          mathText = " ";
+          startD();
+        }
+      },
+    );
   }
 
   void startD() {
@@ -53,36 +54,24 @@ class Detector_thigh_stretch_right implements Detector_default{
 
   void poseDetector() {
     //偵測判定
+    print(posedata[32]!);
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請升高膝蓋";
-      if (this.posetimecounter == this.posetimeTarget) {
-        //秒數達成
+      this.orderText = "請往後彎曲小腿";
+      if (angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)<130 //膝蓋角度
+      ) {
         this.startdDetector = false;
+        this.orderText = "達標";
         this.posecounter++;
-        this.posetimecounter = 0;
-        this.orderText = "達標!";
         this.sounder(this.posecounter);
-      }
-      if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<100 //膝蓋角度
-        &&this.startdDetector) {
-        //每秒目標
-        this.posetimecounter++;
-        print(this.posetimecounter);
-        this.orderText = "請保持住!";
-      } else {
-        //沒有保持
-        this.posetimecounter = 0;
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      if (
-      angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)>150 //膝蓋角度
+      this.orderText = "請伸直雙腳";
+      if (angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)>130 //膝蓋角度
       ) {
         //確認復歸
         this.startdDetector = true;
-      } else {
-        this.orderText = "請放下腿";
       }
     }
   }
@@ -134,4 +123,6 @@ class Detector_thigh_stretch_right implements Detector_default{
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
   }
+
+
 }

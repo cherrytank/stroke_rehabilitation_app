@@ -58,7 +58,7 @@ class Detector_bent_knees_right implements Detector_default{
     if (this.startdDetector) {
       DetectorED = true;
       this.orderText = "請往後彎曲小腿";
-      if (distance(posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<100
+      if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<130 //膝蓋角度
       ) {
         this.startdDetector = false;
         this.orderText = "達標";
@@ -68,7 +68,8 @@ class Detector_bent_knees_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       this.orderText = "請伸直雙腳";
-      if (distance(posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)>100) {
+      if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)>130 //膝蓋角度
+      ) {
         //確認復歸
         this.startdDetector = true;
       }

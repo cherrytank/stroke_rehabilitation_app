@@ -121,7 +121,6 @@ class global{
               global.Det = Detector_towel_left();
               break;
           //lower_body_left
-          /*
             case 36:
               global.Det = Detector_thigh_stretch_left();
               break;
@@ -140,6 +139,7 @@ class global{
             case 41:
               global.Det = Detector_calf_knees_left();
               break;
+          /*
           //lower_body_Advanced_left
             case 42:
               global.Det = Detector_lift_feet_left();

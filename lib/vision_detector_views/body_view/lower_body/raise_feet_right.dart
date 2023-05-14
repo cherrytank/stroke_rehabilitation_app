@@ -7,7 +7,7 @@ class Detector_raise_feet_right implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
-  int poseTarget = 10; //目標次數設定
+  int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
   bool endDetector = false; //跳轉
   bool DetectorED = false;
@@ -64,8 +64,8 @@ class Detector_raise_feet_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<120 //膝蓋角度
-        &&angle(posedata[24]!, posedata[25]!, posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!)<120 //身體與腿得角度
+      if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<140 //膝蓋角度
+        &&angle(posedata[24]!, posedata[25]!, posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!)<140 //身體與腿得角度
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
@@ -78,7 +78,7 @@ class Detector_raise_feet_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)>150 //膝蓋角度
+      angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)>140 //膝蓋角度
       ) {
         //確認復歸
         this.startdDetector = true;
