@@ -359,7 +359,7 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
                                         ),
                                       ),
                                       Text(
-                                        '手軸運動',
+                                        '手肘運動',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

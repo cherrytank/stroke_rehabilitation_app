@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "162792758891",
+    "project_id": "flutter-fcm-dbe9d",
+    "storage_bucket": "flutter-fcm-dbe9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162792758891:android:4fa82ffed1f02d5b351b2e",
+        "android_client_info": {
+          "package_name": "com.example.stroke_rehabilitation_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162792758891-584s5lutf58ranqdrlro87umvpg9rk5n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnZ9L5pnXGr0aPjGT2kWxT2Uw8C3PcSZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162792758891-584s5lutf58ranqdrlro87umvpg9rk5n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
