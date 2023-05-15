@@ -64,7 +64,7 @@ class Detector_thigh_receive_left implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)<150 //膝蓋距離
+      if (distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)<200 //膝蓋距離
           &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
@@ -77,7 +77,7 @@ class Detector_thigh_receive_left implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)>100 //膝蓋距離
+      distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)>300 //膝蓋距離
       ) {
         //確認復歸
         this.startdDetector = true;
