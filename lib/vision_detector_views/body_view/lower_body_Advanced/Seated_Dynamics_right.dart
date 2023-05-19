@@ -58,7 +58,7 @@ class Detector_Seated_Dynamics_right implements Detector_default{
     if (this.startdDetector) {
       DetectorED = true;
       this.orderText = "請身體往下";
-      if (distance(posedata[24]!, posedata[25]!, posedata[52]!, posedata[53]!)<150
+      if (distance(posedata[24]!, posedata[25]!, posedata[52]!, posedata[53]!)<200
       ) {
         this.startdDetector = false;
         this.orderText = "達標";

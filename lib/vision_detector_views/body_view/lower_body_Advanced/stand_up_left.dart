@@ -3,7 +3,7 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_lift_feet_right implements Detector_default{
+class Detector_stand_up_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 10; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
@@ -55,7 +55,7 @@ class Detector_lift_feet_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請側抬右腳";
+      this.orderText = "請抬起腳";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
@@ -64,8 +64,8 @@ class Detector_lift_feet_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>200 //腳踝距離
-        && distance(posedata[56]!, posedata[56]!, posedata[24]!, posedata[24]!)>50
+      if (angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)<120 //膝蓋角度
+        &&angle(posedata[22]!, posedata[23]!, posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!)<120 //身體與腿得角度
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
@@ -78,12 +78,12 @@ class Detector_lift_feet_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)<100 //腳踝距離
+      angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)>150 //膝蓋角度
       ) {
         //確認復歸
         this.startdDetector = true;
       } else {
-        this.orderText = "請放下腳";
+        this.orderText = "請放下腿";
       }
     }
   }

@@ -3,9 +3,10 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_lift_feet_right implements Detector_default{
+
+class Detector_standing_action_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
-  int posetimeTarget = 10; //復健動作持續秒數目標
+  int posetimeTarget = 3; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
   int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
@@ -64,8 +65,7 @@ class Detector_lift_feet_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>200 //腳踝距離
-        && distance(posedata[56]!, posedata[56]!, posedata[24]!, posedata[24]!)>50
+      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>220 //腳踝距離
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
@@ -78,7 +78,7 @@ class Detector_lift_feet_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)<100 //腳踝距離
+      distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)<200 //腳踝距離
       ) {
         //確認復歸
         this.startdDetector = true;

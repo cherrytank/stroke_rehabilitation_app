@@ -139,7 +139,6 @@ class global{
             case 41:
               global.Det = Detector_calf_knees_left();
               break;
-          /*
           //lower_body_Advanced_left
             case 42:
               global.Det = Detector_lift_feet_left();
@@ -158,7 +157,7 @@ class global{
               break;
             case 47:
               global.Det = Detector_sitting_balance_left();
-              break;*/
+              break;
           }
       }
 }

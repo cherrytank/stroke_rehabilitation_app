@@ -135,4 +135,5 @@ class Detector_stand_up_right implements Detector_default{
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
   }
+
 }

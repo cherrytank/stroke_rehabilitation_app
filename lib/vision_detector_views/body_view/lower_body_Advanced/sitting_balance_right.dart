@@ -55,25 +55,48 @@ class Detector_sitting_balance_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請向右傾";
-      if (this.posetimecounter == this.posetimeTarget) {
-        //秒數達成
-        this.startdDetector = false;
-        this.posecounter++;
-        this.posetimecounter = 0;
-        this.orderText = "達標!";
-        this.sounder(this.posecounter);
-      }
-      if (
-        distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!)>70
-        &&this.startdDetector) {
-        //每秒目標
-        this.posetimecounter++;
-        print(this.posetimecounter);
-        this.orderText = "請保持住!";
-      } else {
-        //沒有保持
-        this.posetimecounter = 0;
+      if(right_side) {
+        this.orderText = "請向右傾";
+        if (this.posetimecounter == this.posetimeTarget) {
+          //秒數達成
+          this.startdDetector = false;
+          this.posecounter++;
+          this.posetimecounter = 0;
+          this.orderText = "達標!";
+          this.sounder(this.posecounter);
+          this.right_side = false;
+        }
+        if (distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!) > 70
+            && this.startdDetector) {
+          //每秒目標
+          this.posetimecounter++;
+          print(this.posetimecounter);
+          this.orderText = "請保持住!";
+        } else {
+          //沒有保持
+          this.posetimecounter = 0;
+        }
+      }else {
+        this.orderText = "請向左傾";
+        if (this.posetimecounter == this.posetimeTarget) {
+          //秒數達成
+          this.startdDetector = false;
+          this.posecounter++;
+          this.posetimecounter = 0;
+          this.orderText = "達標!";
+          this.sounder(this.posecounter);
+          this.right_side = true;
+        }
+        if (distance(posedata[22]!, posedata[22]!, posedata[46]!, posedata[46]!)>70
+            && this.startdDetector) {
+          //每秒目標
+          this.posetimecounter++;
+          print(this.posetimecounter);
+          this.orderText = "請保持住!";
+        } else {
+          //沒有保持
+          this.posetimecounter = 0;
+        }
       }
     } else if (DetectorED) {
       //預防空值被訪問

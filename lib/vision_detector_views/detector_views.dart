@@ -42,14 +42,12 @@ export 'body_view/lower_body/thigh_abduction_left.dart';
 export 'body_view/lower_body/bent_knees_left.dart';
 export 'body_view/lower_body/thigh_receive_left.dart';
 export 'body_view/lower_body/calf_knees_left.dart';
-/*
 export 'body_view/lower_body_Advanced/lift_feet_left.dart';
 export 'body_view/lower_body_Advanced/stand_up_left.dart';
 export 'body_view/lower_body_Advanced/standing_action_left.dart';
 export 'body_view/lower_body_Advanced/standing_knee_bent_left.dart';
 export 'body_view/lower_body_Advanced/Seated_Dynamics_left.dart';
 export 'body_view/lower_body_Advanced/sitting_balance_left.dart';
-*/
 /*
 動作中英對照表(_right ,_left )
   初階上肢

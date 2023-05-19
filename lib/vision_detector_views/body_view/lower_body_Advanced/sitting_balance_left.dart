@@ -3,9 +3,9 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_lift_feet_right implements Detector_default{
+class Detector_sitting_balance_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
-  int posetimeTarget = 10; //復健動作持續秒數目標
+  int posetimeTarget = 3; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
   int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
@@ -55,35 +55,58 @@ class Detector_lift_feet_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請側抬右腳";
-      if (this.posetimecounter == this.posetimeTarget) {
-        //秒數達成
-        this.startdDetector = false;
-        this.posecounter++;
-        this.posetimecounter = 0;
-        this.orderText = "達標!";
-        this.sounder(this.posecounter);
-      }
-      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>200 //腳踝距離
-        && distance(posedata[56]!, posedata[56]!, posedata[24]!, posedata[24]!)>50
-        &&this.startdDetector) {
-        //每秒目標
-        this.posetimecounter++;
-        print(this.posetimecounter);
-        this.orderText = "請保持住!";
-      } else {
-        //沒有保持
-        this.posetimecounter = 0;
+      if(right_side) {
+        this.orderText = "請向右傾";
+        if (this.posetimecounter == this.posetimeTarget) {
+          //秒數達成
+          this.startdDetector = false;
+          this.posecounter++;
+          this.posetimecounter = 0;
+          this.orderText = "達標!";
+          this.sounder(this.posecounter);
+          this.right_side = false;
+        }
+        if (distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!) > 70
+            && this.startdDetector) {
+          //每秒目標
+          this.posetimecounter++;
+          print(this.posetimecounter);
+          this.orderText = "請保持住!";
+        } else {
+          //沒有保持
+          this.posetimecounter = 0;
+        }
+      }else {
+        this.orderText = "請向左傾";
+        if (this.posetimecounter == this.posetimeTarget) {
+          //秒數達成
+          this.startdDetector = false;
+          this.posecounter++;
+          this.posetimecounter = 0;
+          this.orderText = "達標!";
+          this.sounder(this.posecounter);
+          this.right_side = true;
+        }
+        if (distance(posedata[22]!, posedata[22]!, posedata[46]!, posedata[46]!)>70
+            && this.startdDetector) {
+          //每秒目標
+          this.posetimecounter++;
+          print(this.posetimecounter);
+          this.orderText = "請保持住!";
+        } else {
+          //沒有保持
+          this.posetimecounter = 0;
+        }
       }
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)<100 //腳踝距離
+      distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!)<70
       ) {
         //確認復歸
         this.startdDetector = true;
       } else {
-        this.orderText = "請放下腳";
+        this.orderText = "請回正身體";
       }
     }
   }

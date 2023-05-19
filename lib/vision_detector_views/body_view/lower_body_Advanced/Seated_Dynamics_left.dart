@@ -3,43 +3,44 @@ import 'dart:math';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
-class Detector_lift_feet_right implements Detector_default{
+class Detector_Seated_Dynamics_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
-  int posetimeTarget = 10; //復健動作持續秒數目標
+  int posetimeTarget = 0; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
   int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
   bool endDetector = false; //跳轉
   bool DetectorED = false;
-  bool timerbool=true;//倒數計時器
+  bool timerbool = true; //倒數計時器
   double? Standpoint_X = 0;
   double? Standpoint_Y = 0;
-  double? Standpoint_bodymind_x = 0;//身體終點
-  double? Standpoint_bodymind_y = 0;//身體終點
-  String orderText = "";//目標提醒
-  String mathText = "";//倒數文字
-  bool buttom_false = true;//按下按鈕消失
+  double? Standpoint_bodymind_x = 0; //身體終點
+  double? Standpoint_bodymind_y = 0; //身體終點
+  String orderText = ""; //目標提醒
+  String mathText = ""; //倒數文字
+  bool buttom_false = true; //按下按鈕消失
   bool changeUI = false;
   bool right_side = true;
-  bool timerui = true;
+  bool timerui = false;
   String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
-  void startd(){//倒數計時
-      int counter = 5;
-      buttom_false = false;
-      Timer.periodic(//觸發偵測timer
-        const Duration(seconds: 1),
-            (timer) {
-          mathText = "${counter--}";
-          if(counter<0){
-            print("cancel timer");
-            timer.cancel();
-            mathText = " ";
-            startD();
-          }
-        },
-      );
+  void startd() {
+    //倒數計時
+    int counter = 5;
+    buttom_false = false;
+    Timer.periodic( //觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        mathText = "${counter--}";
+        if (counter < 0) {
+          print("cancel timer");
+          timer.cancel();
+          mathText = " ";
+          startD();
+        }
+      },
+    );
   }
 
   void startD() {
@@ -53,37 +54,23 @@ class Detector_lift_feet_right implements Detector_default{
 
   void poseDetector() {
     //偵測判定
+    print(posedata[32]!);
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請側抬右腳";
-      if (this.posetimecounter == this.posetimeTarget) {
-        //秒數達成
+      this.orderText = "請身體往下";
+      if (distance(posedata[24]!, posedata[25]!, posedata[52]!, posedata[53]!)<200
+      ) {
         this.startdDetector = false;
+        this.orderText = "達標";
         this.posecounter++;
-        this.posetimecounter = 0;
-        this.orderText = "達標!";
         this.sounder(this.posecounter);
-      }
-      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>200 //腳踝距離
-        && distance(posedata[56]!, posedata[56]!, posedata[24]!, posedata[24]!)>50
-        &&this.startdDetector) {
-        //每秒目標
-        this.posetimecounter++;
-        print(this.posetimecounter);
-        this.orderText = "請保持住!";
-      } else {
-        //沒有保持
-        this.posetimecounter = 0;
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      if (
-      distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)<100 //腳踝距離
-      ) {
+      this.orderText = "請回正身體";
+      if (distance(posedata[24]!, posedata[25]!, posedata[52]!, posedata[53]!)>200) {
         //確認復歸
         this.startdDetector = true;
-      } else {
-        this.orderText = "請放下腳";
       }
     }
   }
@@ -119,17 +106,17 @@ class Detector_lift_feet_right implements Detector_default{
   }
 
   void settimer(){
-      Timer.periodic(//觸發偵測timer
-        const Duration(seconds: 1),
-            (timer) {
-          poseDetector(); //偵測目標是否完成動作
-          posetargetdone(); //偵測目標是否完成指定次數
-          if(!this.timerbool){
-            print("cancel timer");
-            timer.cancel();
-          }
-        },
-      );
+    Timer.periodic(//觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        poseDetector(); //偵測目標是否完成動作
+        posetargetdone(); //偵測目標是否完成指定次數
+        if(!this.timerbool){
+          print("cancel timer");
+          timer.cancel();
+        }
+      },
+    );
   }
 
   void sounder(int counter){
