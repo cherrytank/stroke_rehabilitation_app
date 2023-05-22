@@ -64,8 +64,8 @@ class Detector_stand_up_left implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)<120 //膝蓋角度
-        &&angle(posedata[22]!, posedata[23]!, posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!)<120 //身體與腿得角度
+      if (angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)<150 //膝蓋角度
+        &&angle(posedata[22]!, posedata[23]!, posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!)<150 //身體與腿得角度
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;

@@ -66,7 +66,7 @@ class Detector_sitting_balance_right implements Detector_default{
           this.sounder(this.posecounter);
           this.right_side = false;
         }
-        if (distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!) > 70
+        if (distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!) > 120
             && this.startdDetector) {
           //每秒目標
           this.posetimecounter++;
@@ -87,7 +87,7 @@ class Detector_sitting_balance_right implements Detector_default{
           this.sounder(this.posecounter);
           this.right_side = true;
         }
-        if (distance(posedata[22]!, posedata[22]!, posedata[46]!, posedata[46]!)>70
+        if (distance(posedata[22]!, posedata[22]!, posedata[46]!, posedata[46]!)>120
             && this.startdDetector) {
           //每秒目標
           this.posetimecounter++;
@@ -101,7 +101,7 @@ class Detector_sitting_balance_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!)<70
+      distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!)<100
       ) {
         //確認復歸
         this.startdDetector = true;
