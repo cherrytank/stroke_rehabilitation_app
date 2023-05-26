@@ -83,7 +83,7 @@ class _LineWidgetState extends State<LineWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  '需求表達',
+                                  '諮詢社群',
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
