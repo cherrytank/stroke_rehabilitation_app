@@ -276,10 +276,10 @@ class _PoseDetectorViewState extends State<pose_view> {
       _text = '';
     });
     final poses = await _poseDetector.processImage(inputImage);
-    if (inputImage.inputImageData?.size != null &&
-        inputImage.inputImageData?.imageRotation != null) {
-      final painter = PosePainter(poses, inputImage.inputImageData!.size,
-          inputImage.inputImageData!.imageRotation);
+    if (inputImage.metadata?.size != null &&
+        inputImage.metadata?.rotation != null) {
+      final painter = PosePainter(
+          poses, inputImage.metadata!.size, inputImage.metadata!.rotation);
       _customPaint = CustomPaint(painter: painter);
     } else {
       _text = 'Poses found: ${poses.length}\n\n';
@@ -291,6 +291,7 @@ class _PoseDetectorViewState extends State<pose_view> {
       setState(() {});
     }
   }
+}
 
   Future<void> endout() async {
     DateTime now = DateTime.now();
@@ -344,4 +345,3 @@ class _PoseDetectorViewState extends State<pose_view> {
       print("no");
     }
   }
-}
