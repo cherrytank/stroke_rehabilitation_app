@@ -1,40 +1,39 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
+import 'dart:io' as io;
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import 'body_view/assembly.dart';
-import 'pose_transform.dart';
-import 'package:http/http.dart' as http;
-import '../main.dart';
-import 'package:intl/intl.dart';
+import 'camera_view.dart';
+//import 'face_transform.dart';
+import 'painters/label_detector_painter.dart';
 
-
-class pose_view extends StatefulWidget {
+class ImageLabelView extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _PoseDetectorViewState();
+  State<ImageLabelView> createState() => _ImageLabelViewState();
 }
 
-class _PoseDetectorViewState extends State<pose_view> {
-  final PoseDetector _poseDetector =
-      PoseDetector(options: PoseDetectorOptions());
-  bool _canProcess = true;
+class _ImageLabelViewState extends State<ImageLabelView>{
+  late ImageLabeler _imageLabeler;
+  bool _canProcess = false;
   bool _isBusy = false;
+  Detector_Smile smile = Detector_Smile();
   CustomPaint? _customPaint;
   String? _text;
   @override
   void initState() {
-    global.pose_tranform();
     super.initState();
+    _initializeLabeler();
   }
 
   @override
-  void dispose() async {
+  void dispose() {
     _canProcess = false;
-    _poseDetector.close();
-    global.Det.timerbool = false; //關閉timer
-    cameramode_front = false; //覆歸攝影機設定
+    _imageLabeler.close();
+    smile.TimerBool = false; //關閉timer
     super.dispose();
   }
 
@@ -45,23 +44,20 @@ class _PoseDetectorViewState extends State<pose_view> {
       fit: StackFit.expand,
       children: <Widget>[
         CameraView(
-          //相機view
-          title: 'Pose',
+          title: 'Image Labeler',
           customPaint: _customPaint,
           text: _text,
-          onImage: (inputImage) {
-            processImage(inputImage);
-          },
+          onImage: processImage,
         ),
-        if (!global.Det.changeUI) ...[
+        if (!smile.ChangeUI) ...[
           Positioned(
-              //倒數計時
+            //倒數計時
               top: 180,
               child: Container(
                 height: 120,
                 width: 100,
                 child: AutoSizeText(
-                  "${global.Det.mathText}",
+                  "${smile.TimerText}",
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   style: TextStyle(
@@ -84,7 +80,7 @@ class _PoseDetectorViewState extends State<pose_view> {
                 borderRadius: BorderRadius.all(Radius.circular(20.0)),
               ),
               child: AutoSizeText(
-                global.Det.mindText,
+                smile.StartRemindText,
                 textAlign: TextAlign.center,
                 maxLines: 3,
                 style: TextStyle(
@@ -97,9 +93,9 @@ class _PoseDetectorViewState extends State<pose_view> {
               ),
             ),
           ).animate().slide(duration: 500.ms),
-          if (global.Det.buttom_false)
+          if (smile.buttom_false)
             Positioned(
-                //復健按鈕
+              //復健按鈕
                 bottom: 15.0,
                 child: Container(
                   height: 80,
@@ -118,11 +114,11 @@ class _PoseDetectorViewState extends State<pose_view> {
                           color: Colors.white,
                         )),
                     onPressed: () {
-                      global.Det.startd();
+                      smile.Started();
                     },
                   ),
                 )).animate().slide(duration: 500.ms),
-        ] else if (!global.Det.endDetector) ...[
+        ] else if (!smile.EndDetector) ...[
           Positioned(
             //計數器UI
             bottom: 10,
@@ -139,7 +135,7 @@ class _PoseDetectorViewState extends State<pose_view> {
               width: 100,
               height: 90,
               child: AutoSizeText(
-                "次數\n${global.Det.posecounter}/${global.Det.poseTarget}",
+                "次數\n${smile.FinishCounter}/${smile.FinishTarget}",
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -151,7 +147,7 @@ class _PoseDetectorViewState extends State<pose_view> {
               ),
             ),
           ),
-          if (global.Det.timerui)
+          if (smile.timerui)
             Positioned(
               //計時器UI
               bottom: 10,
@@ -168,7 +164,7 @@ class _PoseDetectorViewState extends State<pose_view> {
                 width: 100,
                 height: 90,
                 child: AutoSizeText(
-                  "秒數\n${global.Det.posetimecounter}/${global.Det.posetimeTarget}",
+                  "秒數\n${smile.FaceTimeCounter}/${smile.FaceTimeTarget}",
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: TextStyle(
@@ -195,7 +191,7 @@ class _PoseDetectorViewState extends State<pose_view> {
               width: 220,
               height: 100,
               child: AutoSizeText(
-                "${global.Det.orderText}",
+                "${smile.TargetRemind}",
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 style: TextStyle(
@@ -210,7 +206,7 @@ class _PoseDetectorViewState extends State<pose_view> {
               .animate(onPlay: (controller) => controller.repeat())
               .scaleXY(end: 1.2, duration: 0.2.seconds),
         ],
-        if (global.Det.endDetector)
+        if (smile.EndDetector)
           Positioned( //退出視窗
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -254,7 +250,7 @@ class _PoseDetectorViewState extends State<pose_view> {
                           ),
                         ),
                         onPressed: () async {
-                          endout();
+                          //endout();
                           Navigator.pop(context);
                         },
                       ),
@@ -268,22 +264,55 @@ class _PoseDetectorViewState extends State<pose_view> {
     );
   }
 
-  Future<void> processImage(InputImage inputImage) async {
+
+
+
+
+
+  void _initializeLabeler() async {
+    // uncomment next line if you want to use the default model
+    // _imageLabeler = ImageLabeler(options: ImageLabelerOptions());
+
+    // uncomment next lines if you want to use a local model
+    // make sure to add tflite model to assets/ml
+    // final path = 'assets/ml/lite-model_aiy_vision_classifier_birds_V1_3.tflite';
+    final path = 'assets/ml/1mod_model-export_icn_tflite-untitled_16860099_20230606094855-2023-06-06T02_56_22.442278Z_model.tflite';
+    final modelPath = await _getModel(path);
+    final options = LocalLabelerOptions(modelPath: modelPath);
+    _imageLabeler = ImageLabeler(options: options);
+
+    // uncomment next lines if you want to use a remote model
+    // make sure to add model to firebase
+    // final modelName = 'bird-classifier';
+    // final response =
+    //     await FirebaseImageLabelerModelManager().downloadModel(modelName);
+    // print('Downloaded: $response');
+    // final options =
+    //     FirebaseLabelerOption(confidenceThreshold: 0.5, modelName: modelName);
+    // _imageLabeler = ImageLabeler(options: options);
+
+    _canProcess = true;
+  }
+
+  Future<void> processImage(InputImage inputImage) async { //顯示label與閥值
     if (!_canProcess) return;
     if (_isBusy) return;
     _isBusy = true;
     setState(() {
       _text = '';
     });
-    final poses = await _poseDetector.processImage(inputImage);
+    final labels = await _imageLabeler.processImage(inputImage);
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null) {
-      final painter = PosePainter(
-          poses, inputImage.metadata!.size, inputImage.metadata!.rotation);
+      final painter = LabelDetectorPainter(labels);
       _customPaint = CustomPaint(painter: painter);
     } else {
-      _text = 'Poses found: ${poses.length}\n\n';
-      // TODO: set _customPaint to draw landmarks on top of image
+      String text = 'Labels found: ${labels.length}\n\n';
+      for (final label in labels) {
+        text += 'Label: ${label.label}, '
+            'Confidence: ${label.confidence.toStringAsFixed(2)}\n\n';
+      }
+      _text = text;
       _customPaint = null;
     }
     _isBusy = false;
@@ -291,57 +320,173 @@ class _PoseDetectorViewState extends State<pose_view> {
       setState(() {});
     }
   }
+
+  Future<String> _getModel(String assetPath) async { //取得模型
+    if (io.Platform.isAndroid) {
+      return 'flutter_assets/$assetPath';
+    }
+    final path = '${(await getApplicationSupportDirectory()).path}/$assetPath';
+    await io.Directory(dirname(path)).create(recursive: true);
+    final file = io.File(path);
+    if (!await file.exists()) {
+      final byteData = await rootBundle.load(assetPath);
+      await file.writeAsBytes(byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+    }
+    return file.path;
+  }
 }
+class Detector_Smile {
+  int  FaceTimeCounter = 0; //復健動作持續秒數
+  int  FaceTimeTarget  = 3; //復健動作秒數目標
+  int  FinishCounter   = 0; //復健動作實作次數
+  int  FinishTarget    = 3; //復健動作實作次數目標
+  bool StartedDetector = false;//偵測
+  bool EndDetector     = false;//跳轉
+  bool TimerBool       = true;//倒數計時器
+  bool ChangeUI        = false;//改變UI介面
+  bool DetectReset     = false;//復歸判定
+  bool buttom_false    = true;//按下按鈕消失
+  bool timerui         = true;
+  bool DetectorED      = false;
+  String TargetRemind  = '請保持微笑';//目標提醒
+  String TimerText     = '';//倒數文字
+  String StartRemindText = '請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」';
+  String TargetText    = 'smile'; //目標特徵
+  //final player = AudioCache();//撥放音檔
 
-  Future<void> endout() async {
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-    var url;
-    String _degree;
-    String _parts;
-    String _coin_add;
-    if(global.posenumber < 6 || (global.posenumber>23 && global.posenumber<30)){
-      url = Uri.parse(ip+"train_upok.php");
-      _degree = "初階";
-      _parts = "上肢";
-      _coin_add = "5";
-      print("初階,上肢");
-    }
-    else if(global.posenumber < 12 || (global.posenumber>29 && global.posenumber<36)){
-      url = Uri.parse(ip+"train_upok.php");
-      _degree = "進階";
-      _parts = "上肢";
-      _coin_add = "5";
-      print("進階,上肢");
-    }
-    else if(global.posenumber < 18 || (global.posenumber>35 && global.posenumber<42)){
-      url = Uri.parse(ip+"train_downok.php");
-      _degree = "初階";
-      _parts = "下肢";
-      _coin_add = "5";
-      print("初階,下肢");
-    }
-    else{
-      url = Uri.parse(ip+"train_downok.php");
-      _degree = "進階";
-      _parts = "下肢";
-      _coin_add = "5";
-      print("進階,下肢");
-    }
 
-    final responce = await http.post(url,body:{
-      "time": formattedDate,
-      "account": FFAppState().accountnumber.toString(),
-      "action": FFAppState().trainup.toString(), //動作
-      "degree": _degree,
-      "parts": _parts,
-      "times": "1", //動作
-      "coin_add": _coin_add,
-    });
-    if (responce.statusCode == 200) {
-      print("ok");
-    } else {
-      print(responce.statusCode);
-      print("no");
+  void FaceDetector() {
+    //偵測判定
+    if (this.StartedDetector) {
+      DetectorED = true;
+      this.TargetRemind = "請保持微笑";
+      if (this.FaceTimeCounter == this.FaceTimeTarget) {
+        //秒數達成
+        this.StartedDetector = false;
+        this.FinishCounter++;
+        this.FaceTimeCounter = 0;
+        this.TargetRemind = "達標!";
+        //this.sounder(this.posecounter);
+      }
+      if (DetectResult == 'smile'&& this.StartedDetector) {
+        //每秒目標
+        this.FaceTimeCounter++;
+        print(this.FaceTimeCounter);
+        this.TargetRemind = "請保持住!";
+      } else {
+        //沒有保持
+        this.FaceTimeCounter = 0;
+      }
+    } else if (DetectorED) {
+      //預防空值被訪問
+      if (DetectResult != 'smile') {
+        //確認復歸
+        this.StartedDetector = true;
+      } else {
+        this.TargetRemind = "請回復上一步";
+      }
     }
   }
+
+  void FaceTargetDone() {
+    //完成任務後發出退出信號
+    if (this.FinishCounter == this.FinishTarget) {
+      this.EndDetector = true;
+    }
+  }
+
+
+  void SetTimer() {
+    Timer.periodic(         //觸發偵測timer
+      const Duration(seconds: 1),
+          (timer) {
+        FaceDetector(); //偵測目標是否完成動作
+        FaceTargetDone(); //偵測目標是否完成指定次數
+        if(!this.TimerBool){
+          print("cancel timer");
+          timer.cancel();
+        }
+      },
+    );
+  }
+
+
+  void StartDetect() {
+    ChangeUI = true;
+    StartedDetector = true;
+    print('Start Detector is true');
+    SetTimer();
+  }
+
+
+  void Started() {
+    int Number = 5;
+    buttom_false = false;
+    Timer.periodic(
+        const Duration(seconds: 1),
+            (timer){
+          TimerText = "${Number--}";
+          if(Number<0){
+            print("cancel timer");
+            timer.cancel();
+            TimerText = " ";
+            StartDetect();
+          }
+        }
+    );
+  }
+
+}
+/*Future<void> endout() async {
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+  var url;
+  String _degree;
+  String _parts;
+  String _coin_add;
+  if(global.posenumber < 6 || (global.posenumber>23 && global.posenumber<30)){
+    url = Uri.parse(ip+"train_upok.php");
+    _degree = "初階";
+    _parts = "上肢";
+    _coin_add = "5";
+    print("初階,上肢");
+  }
+  else if(global.posenumber < 12 || (global.posenumber>29 && global.posenumber<36)){
+    url = Uri.parse(ip+"train_upok.php");
+    _degree = "進階";
+    _parts = "上肢";
+    _coin_add = "5";
+    print("進階,上肢");
+  }
+  else if(global.posenumber < 18 || (global.posenumber>35 && global.posenumber<42)){
+    url = Uri.parse(ip+"train_downok.php");
+    _degree = "初階";
+    _parts = "下肢";
+    _coin_add = "5";
+    print("初階,下肢");
+  }
+  else{
+    url = Uri.parse(ip+"train_downok.php");
+    _degree = "進階";
+    _parts = "下肢";
+    _coin_add = "5";
+    print("進階,下肢");
+  }
+
+  final responce = await http.post(url,body:{
+    "time": formattedDate,
+    "account": FFAppState().accountnumber.toString(),
+    "action": FFAppState().trainup.toString(), //動作
+    "degree": _degree,
+    "parts": _parts,
+    "times": "1", //動作
+    "coin_add": _coin_add,
+  });
+  if (responce.statusCode == 200) {
+    print("ok");
+  } else {
+    print(responce.statusCode);
+    print("no");
+  }
+}*/

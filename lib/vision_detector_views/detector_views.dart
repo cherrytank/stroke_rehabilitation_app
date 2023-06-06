@@ -63,7 +63,7 @@ export 'body_view/lower_body_Advanced/sitting_balance_left.dart';
     [7][31]forward_elbow(手肘前伸) done
     [8][32]shoulder_raise(肩膀側舉) done
     [9][33]heads_raise(雙手抬舉) done
-    [10][34]Shrugging_circles(聳肩繞圈)
+    [10][34]Shrugging_circles(聳肩繞圈) done
     [11][35]towel(擦毛巾) done
 
   初階下肢
