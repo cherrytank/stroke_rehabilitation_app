@@ -64,6 +64,9 @@ dependencies:
   google_mlkit_pose_detection:
     path: lib/vision_detector_views/mlkit_api_source/google_mlkit_pose_detection
   flutter_screenutil: ^5.7.0
+  workmanager: ^0.5.1
+  flutter_local_notifications: ^14.0.0+2
+
 
 
   # The following adds the Cupertino Icons font to your application.
