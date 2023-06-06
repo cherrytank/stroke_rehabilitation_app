@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'camera_view.dart';
 import 'painters/label_detector_painter.dart';
+import 'package:audioplayers/audioplayers.dart';//播放音檔
 
 class tougue extends StatefulWidget {
   @override
@@ -352,7 +353,7 @@ class Detector_tougue {
   String TimerText     = '';//倒數文字
   String StartRemindText = '請將臉部拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」';
   String TargetText    = 'tongue'; //目標特徵
-  //final player = AudioCache();//撥放音檔
+  final player = AudioCache();//撥放音檔
 
 
   void FaceDetector() {
@@ -366,7 +367,7 @@ class Detector_tougue {
         this.FinishCounter++;
         this.FaceTimeCounter = 0;
         this.TargetRemind = "達標!";
-        //this.sounder(this.posecounter);
+        this.sounder(this.FinishCounter);
       }
       if (DetectResult == TargetText && this.StartedDetector) {
         //每秒目標
@@ -434,6 +435,9 @@ class Detector_tougue {
           }
         }
     );
+  }
+  void sounder(int counter){
+    player.play('pose_audios/${counter}.mp3');
   }
 
 }
