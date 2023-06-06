@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import '../main.dart';
+import '../vision_detector_views/label_detector_view/face_class.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'trainmouth_model.dart';
 export 'trainmouth_model.dart';
 
+int Face_Detect_Number = 0;
 class TrainmouthWidget extends StatefulWidget {
   const TrainmouthWidget({Key? key}) : super(key: key);
 
@@ -44,7 +45,33 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
 
         }
         else{
-          context.pushNamed('test');
+          //context.pushNamed('test');
+          switch(Face_Detect_Number){
+            case 1:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>smile()));
+              break;
+            case 2:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>tougue()));
+              break;
+            case 3:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>pout()));
+              break;
+            case 4:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>open_mouth()));
+              break;
+            case 5:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>flick_tougue()));
+              break;
+            case 6:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>pursed_lips()));
+              break;
+          }
         }
       }
       else if(data["times"]=="1次"&&"有時間"==data["time"]){
@@ -155,6 +182,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 6;//抿唇動作
                                             FFAppState().mouth = '鼓頰動作';
                                           });
                                           inputtime();
@@ -193,6 +221,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 1; //微笑動作
                                             FFAppState().mouth = '臉頰微笑';
                                           });
                                           inputtime();
@@ -232,6 +261,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 2;
                                             FFAppState().mouth = '吐舌頭式';
                                           });
                                           inputtime();
@@ -277,6 +307,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 5;
                                             FFAppState().mouth = '彈舌式';
                                           });
                                           inputtime();
@@ -400,6 +431,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 3;
                                             FFAppState().mouth = '嘟嘴式';
                                           });
                                           inputtime();
@@ -438,6 +470,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 4;
                                             FFAppState().mouth = '張嘴說阿';
                                           });
                                           inputtime();

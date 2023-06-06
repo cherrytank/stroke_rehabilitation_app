@@ -20,7 +20,7 @@ class LabelDetectorPainter extends CustomPainter {
 
     builder.pushStyle(ui.TextStyle(color: Colors.lightBlue[900]));
     for (final ImageLabel label in labels) {
-      builder.addText('');
+      builder.addText('label: ${label.label}');
       DetectResult = label.label;
     }
     builder.pop();

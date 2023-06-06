@@ -1,1 +1,1 @@
-export 'label_detector_view.dart';
+export 'detect_smile.dart';

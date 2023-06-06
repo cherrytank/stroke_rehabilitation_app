@@ -8,19 +8,18 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'camera_view.dart';
-//import 'face_transform.dart';
 import 'painters/label_detector_painter.dart';
 
-class ImageLabelView extends StatefulWidget {
+class tougue extends StatefulWidget {
   @override
-  State<ImageLabelView> createState() => _ImageLabelViewState();
+  State<tougue> createState() => _ImageLabelViewState();
 }
 
-class _ImageLabelViewState extends State<ImageLabelView>{
+class _ImageLabelViewState extends State<tougue>{
   late ImageLabeler _imageLabeler;
   bool _canProcess = false;
   bool _isBusy = false;
-  Detector_Smile smile = Detector_Smile();
+  Detector_tougue smile = Detector_tougue();
   CustomPaint? _customPaint;
   String? _text;
   @override
@@ -276,7 +275,7 @@ class _ImageLabelViewState extends State<ImageLabelView>{
     // uncomment next lines if you want to use a local model
     // make sure to add tflite model to assets/ml
     // final path = 'assets/ml/lite-model_aiy_vision_classifier_birds_V1_3.tflite';
-    final path = 'assets/ml/1mod_model-export_icn_tflite-untitled_16860099_20230606094855-2023-06-06T02_56_22.442278Z_model.tflite';
+    final path = 'assets/ml/face_six_detector.tflite';
     final modelPath = await _getModel(path);
     final options = LocalLabelerOptions(modelPath: modelPath);
     _imageLabeler = ImageLabeler(options: options);
@@ -336,7 +335,7 @@ class _ImageLabelViewState extends State<ImageLabelView>{
     return file.path;
   }
 }
-class Detector_Smile {
+class Detector_tougue {
   int  FaceTimeCounter = 0; //復健動作持續秒數
   int  FaceTimeTarget  = 3; //復健動作秒數目標
   int  FinishCounter   = 0; //復健動作實作次數
@@ -349,10 +348,10 @@ class Detector_Smile {
   bool buttom_false    = true;//按下按鈕消失
   bool timerui         = true;
   bool DetectorED      = false;
-  String TargetRemind  = '請保持微笑';//目標提醒
+  String TargetRemind  = '請保持吐舌';//目標提醒
   String TimerText     = '';//倒數文字
-  String StartRemindText = '請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」';
-  String TargetText    = 'smile'; //目標特徵
+  String StartRemindText = '請將臉部拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」';
+  String TargetText    = 'tongue'; //目標特徵
   //final player = AudioCache();//撥放音檔
 
 
@@ -360,7 +359,7 @@ class Detector_Smile {
     //偵測判定
     if (this.StartedDetector) {
       DetectorED = true;
-      this.TargetRemind = "請保持微笑";
+      this.TargetRemind = "請保持吐舌";
       if (this.FaceTimeCounter == this.FaceTimeTarget) {
         //秒數達成
         this.StartedDetector = false;
@@ -369,7 +368,7 @@ class Detector_Smile {
         this.TargetRemind = "達標!";
         //this.sounder(this.posecounter);
       }
-      if (DetectResult == 'smile'&& this.StartedDetector) {
+      if (DetectResult == TargetText && this.StartedDetector) {
         //每秒目標
         this.FaceTimeCounter++;
         print(this.FaceTimeCounter);
@@ -380,7 +379,7 @@ class Detector_Smile {
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      if (DetectResult != 'smile') {
+      if (DetectResult != TargetText) {
         //確認復歸
         this.StartedDetector = true;
       } else {
