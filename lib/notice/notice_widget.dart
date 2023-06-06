@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +10,7 @@ import 'notice_model.dart';
 export 'notice_model.dart';
 import 'package:http/http.dart' as http;
 import '/main.dart';
+
 
 class NoticeWidget extends StatefulWidget {
   const NoticeWidget({Key? key}) : super(key: key);
@@ -31,7 +34,6 @@ class _NoticeWidgetState extends State<NoticeWidget> {
 
     return jsonDecode(responce.body);
   }
-
   @override
   void initState() {
     super.initState();
@@ -440,7 +442,8 @@ class Items extends StatelessWidget {
               fontSize: 25,
             ),
           ),
-          subtitle: Text("本日獲得金幣:"+list![i]['coin']+'        '+list![i]['time'],
+          subtitle: Text("做復健可賺取金幣"+
+              /*list![i]['coin']+*/'   '+list![i]['time'],
             textAlign: TextAlign.start,
             style: FlutterFlowTheme.of(context).titleSmall.override(
               fontFamily: 'Poppins',
