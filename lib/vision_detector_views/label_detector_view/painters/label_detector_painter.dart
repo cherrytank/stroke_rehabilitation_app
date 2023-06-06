@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 
+String DetectResult = '';
 class LabelDetectorPainter extends CustomPainter {
   LabelDetectorPainter(this.labels);
 
@@ -19,8 +20,8 @@ class LabelDetectorPainter extends CustomPainter {
 
     builder.pushStyle(ui.TextStyle(color: Colors.lightBlue[900]));
     for (final ImageLabel label in labels) {
-      builder.addText('Label: ${label.label}, '
-          'Confidence: ${label.confidence.toStringAsFixed(2)}\n');
+      builder.addText('');
+      DetectResult = label.label;
     }
     builder.pop();
 

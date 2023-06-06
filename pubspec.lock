@@ -378,7 +378,7 @@ packages:
       path: "lib/vision_detector_views/mlkit_api_source/google_mlkit_pose_detection"
       relative: true
     source: path
-    version: "0.5.0"
+    version: "0.7.0"
   html:
     dependency: transitive
     description:
