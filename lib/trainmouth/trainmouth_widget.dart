@@ -71,6 +71,14 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context)=>pursed_lips()));
               break;
+            case 7:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>headneck_bend()));
+              break;
+            case 8:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>chin_movement()));
+              break;
           }
         }
       }
@@ -347,6 +355,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 8;
                                             FFAppState().mouth = '下巴運動';
                                           });
                                           inputtime();
@@ -385,6 +394,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           setState(() {
+                                            Face_Detect_Number = 7;
                                             FFAppState().mouth = '頭頸側彎';
                                           });
                                           inputtime();

@@ -1,10 +1,301 @@
 import 'dart:async';
 import 'dart:math';
-
-import 'package:audioplayers/audioplayers.dart';//播放音檔
 import 'package:stroke_rehabilitation_app/vision_detector_views/body_view/assembly.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:audioplayers/audioplayers.dart';//播放音檔
+import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
+import '../camera_view.dart';
+import '../painters/pose_painter.dart';
+import 'package:http/http.dart' as http;
+import '/main.dart';
+import 'package:intl/intl.dart';
 
-class Detector_chin_movement implements Detector_default{
+
+class chin_movement extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _PoseDetectorViewState();
+}
+
+class _PoseDetectorViewState extends State<chin_movement> {
+  final PoseDetector _poseDetector =
+  PoseDetector(options: PoseDetectorOptions());
+  bool _canProcess = true;
+  bool _isBusy = false;
+  CustomPaint? _customPaint;
+  String? _text;
+  Detector_chin_movement Det = Detector_chin_movement();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() async {
+    _canProcess = false;
+    _poseDetector.close();
+    cameramode_front = false; //覆歸攝影機設定
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      fit: StackFit.expand,
+      children: <Widget>[
+        CameraView(
+          //相機view
+          title: 'Pose',
+          customPaint: _customPaint,
+          text: _text,
+          onImage: (inputImage) {
+            processImage(inputImage);
+          },
+        ),
+        if (!Det.changeUI) ...[
+          Positioned(
+            //倒數計時
+              top: 180,
+              child: Container(
+                height: 120,
+                width: 100,
+                child: AutoSizeText(
+                  "${Det.mathText}",
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  style: TextStyle(
+                    backgroundColor: Colors.transparent,
+                    fontSize: 100,
+                    color: Colors.amber,
+                    inherit: false,
+                  ),
+                ),
+              )),
+          Positioned(
+            //開始前提醒視窗
+            bottom: 100.0,
+            child: Container(
+              width: 1000,
+              padding: EdgeInsets.all(10),
+              alignment: Alignment.center,
+              decoration: new BoxDecoration(
+                color: Color.fromARGB(132, 255, 255, 255),
+                borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              ),
+              child: AutoSizeText(
+                Det.mindText,
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                style: TextStyle(
+                  backgroundColor: Colors.transparent,
+                  fontSize: 25,
+                  color: Colors.black,
+                  height: 1.2,
+                  inherit: false,
+                ),
+              ),
+            ),
+          ).animate().slide(duration: 500.ms),
+          if (Det.buttom_false)
+            Positioned(
+              //復健按鈕
+                bottom: 15.0,
+                child: Container(
+                  height: 80,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                      ),
+                      padding: EdgeInsets.all(15),
+                      backgroundColor: Color.fromARGB(250, 255, 190, 52),
+                    ),
+                    child: AutoSizeText("Start!",
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.white,
+                        )),
+                    onPressed: () {
+                      Det.startd();
+                    },
+                  ),
+                )).animate().slide(duration: 500.ms),
+        ] else if (!Det.endDetector) ...[
+          Positioned(
+            //計數器UI
+            bottom: 10,
+            right: -10,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: new BoxDecoration(
+                color: Color.fromARGB(250, 65, 64, 64),
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(20),
+                  right: Radius.circular(0),
+                ),
+              ),
+              width: 100,
+              height: 90,
+              child: AutoSizeText(
+                "次數\n${Det.posecounter}/${Det.poseTarget}",
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Color.fromARGB(250, 255, 190, 52),
+                  height: 1.2,
+                  inherit: false,
+                ),
+              ),
+            ),
+          ),
+          if (Det.timerui)
+            Positioned(
+              //計時器UI
+              bottom: 10,
+              left: -10,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: new BoxDecoration(
+                  color: Color.fromARGB(250, 65, 64, 64),
+                  borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(0),
+                    right: Radius.circular(20),
+                  ),
+                ),
+                width: 100,
+                height: 90,
+                child: AutoSizeText(
+                  "秒數\n${Det.posetimecounter}/${Det.posetimeTarget}",
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Color.fromARGB(250, 255, 190, 52),
+                    height: 1.2,
+                    inherit: false,
+                  ),
+                ),
+              ),
+            ),
+          Positioned(
+            //提醒視窗
+            bottom: 100,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              decoration: new BoxDecoration(
+                color: Color.fromARGB(218, 255, 190, 52),
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(30),
+                  right: Radius.circular(30),
+                ),
+              ),
+              width: 220,
+              height: 100,
+              child: AutoSizeText(
+                "${Det.orderText}",
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                  height: 1.2,
+                  inherit: false,
+                ),
+              ),
+            ),
+          )
+              .animate(onPlay: (controller) => controller.repeat())
+              .scaleXY(end: 1.2, duration: 0.2.seconds),
+        ],
+        if (Det.endDetector)
+          Positioned( //退出視窗
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(40),
+                  decoration: new BoxDecoration(
+                    color: Color.fromARGB(200, 65, 64, 64),
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                  width: 300,
+                  height: 300,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AutoSizeText(
+                        "恭喜完成!!",
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 50,
+                          color: Colors.white,
+                          inherit: false,
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                          padding: EdgeInsets.all(15),
+                          backgroundColor: Color.fromARGB(250, 255, 190, 52),
+                        ),
+                        child: AutoSizeText(
+                          "返回",
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () async {
+                          //endout();
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ).animate().slide(duration: 500.ms),
+      ],
+    );
+  }
+
+  Future<void> processImage(InputImage inputImage) async {
+    if (!_canProcess) return;
+    if (_isBusy) return;
+    _isBusy = true;
+    setState(() {
+      _text = '';
+    });
+    final poses = await _poseDetector.processImage(inputImage);
+    if (inputImage.metadata?.size != null &&
+        inputImage.metadata?.rotation != null) {
+      final painter = PosePainter(
+          poses, inputImage.metadata!.size, inputImage.metadata!.rotation);
+      _customPaint = CustomPaint(painter: painter);
+    } else {
+      _text = 'Poses found: ${poses.length}\n\n';
+      // TODO: set _customPaint to draw landmarks on top of image
+      _customPaint = null;
+    }
+    _isBusy = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+}
+class Detector_chin_movement{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
@@ -23,7 +314,7 @@ class Detector_chin_movement implements Detector_default{
   bool changeUI = false;
   bool right_side = true;
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將臉部拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -65,8 +356,7 @@ class Detector_chin_movement implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)<140 //膝蓋角度
-          &&angle(posedata[22]!, posedata[23]!, posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!)<140 //身體與腿得角度
+      if ( distance(posedata[1]!, posedata[1]!, posedata[23]!, posedata[23]!)<200
           &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;
@@ -78,9 +368,7 @@ class Detector_chin_movement implements Detector_default{
       }
     } else if (DetectorED) {
       //預防空值被訪問
-      if (
-      angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)>140 //膝蓋角度
-      ) {
+      if (distance(posedata[1]!, posedata[1]!, posedata[23]!, posedata[23]!)>200) {
         //確認復歸
         this.startdDetector = true;
       } else {
@@ -138,3 +426,55 @@ class Detector_chin_movement implements Detector_default{
   }
 
 }
+/*Future<void> endout() async {
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+  var url;
+  String _degree;
+  String _parts;
+  String _coin_add;
+  if(global.posenumber < 6 || (global.posenumber>23 && global.posenumber<30)){
+    url = Uri.parse(ip+"train_upok.php");
+    _degree = "初階";
+    _parts = "上肢";
+    _coin_add = "5";
+    print("初階,上肢");
+  }
+  else if(global.posenumber < 12 || (global.posenumber>29 && global.posenumber<36)){
+    url = Uri.parse(ip+"train_upok.php");
+    _degree = "進階";
+    _parts = "上肢";
+    _coin_add = "5";
+    print("進階,上肢");
+  }
+  else if(global.posenumber < 18 || (global.posenumber>35 && global.posenumber<42)){
+    url = Uri.parse(ip+"train_downok.php");
+    _degree = "初階";
+    _parts = "下肢";
+    _coin_add = "5";
+    print("初階,下肢");
+  }
+  else{
+    url = Uri.parse(ip+"train_downok.php");
+    _degree = "進階";
+    _parts = "下肢";
+    _coin_add = "5";
+    print("進階,下肢");
+  }
+
+  final responce = await http.post(url,body:{
+    "time": formattedDate,
+    "account": FFAppState().accountnumber.toString(),
+    "action": FFAppState().trainup.toString(), //動作
+    "degree": _degree,
+    "parts": _parts,
+    "times": "1", //動作
+    "coin_add": _coin_add,
+  });
+  if (responce.statusCode == 200) {
+    print("ok");
+  } else {
+    print(responce.statusCode);
+    print("no");
+  }
+}*/

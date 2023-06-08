@@ -4,6 +4,8 @@ export 'detect_open_mouth.dart';
 export 'detect_pout.dart';
 export 'detect_pursed_lips.dart';
 export 'detect_tongue.dart';
+export 'detect_chin_movement.dart';
+export 'detect_headneck_bend.dart';
 /*
    tongue吐舌
    pursed_lips抿唇
