@@ -8,6 +8,8 @@ import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
+import '../../app_state.dart';
+import '../../trainmouth/trainmouth_widget.dart';
 import '../camera_view.dart';
 import '../painters/pose_painter.dart';
 import 'package:http/http.dart' as http;
@@ -256,7 +258,7 @@ class _PoseDetectorViewState extends State<headneck_bend> {
                           ),
                         ),
                         onPressed: () async {
-                          //endout();
+                          endout7();
                           Navigator.pop(context);
                         },
                       ),
@@ -299,7 +301,7 @@ class Detector_headneck_bend {
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
-  int poseTarget = 15; //目標次數設定
+  int poseTarget = 3; //目標次數設定
   bool startdDetector = false; //偵測
   bool endDetector = false; //跳轉
   bool DetectorED = false;
@@ -452,50 +454,22 @@ class Detector_headneck_bend {
   }
 
 }
-/*Future<void> endout() async {
+Future<void> endout7() async {
   DateTime now = DateTime.now();
   String formattedDate = DateFormat('yyyy-MM-dd').format(now);
   var url;
-  String _degree;
-  String _parts;
-  String _coin_add;
-  if(global.posenumber < 6 || (global.posenumber>23 && global.posenumber<30)){
-    url = Uri.parse(ip+"train_upok.php");
-    _degree = "初階";
-    _parts = "上肢";
-    _coin_add = "5";
-    print("初階,上肢");
+  if(Face_Detect_Number==7){                //頭側彎
+    url = Uri.parse(ip+"train_mouthok.php");
+    print("初階,吞嚥");
   }
-  else if(global.posenumber < 12 || (global.posenumber>29 && global.posenumber<36)){
-    url = Uri.parse(ip+"train_upok.php");
-    _degree = "進階";
-    _parts = "上肢";
-    _coin_add = "5";
-    print("進階,上肢");
-  }
-  else if(global.posenumber < 18 || (global.posenumber>35 && global.posenumber<42)){
-    url = Uri.parse(ip+"train_downok.php");
-    _degree = "初階";
-    _parts = "下肢";
-    _coin_add = "5";
-    print("初階,下肢");
-  }
-  else{
-    url = Uri.parse(ip+"train_downok.php");
-    _degree = "進階";
-    _parts = "下肢";
-    _coin_add = "5";
-    print("進階,下肢");
-  }
-
   final responce = await http.post(url,body:{
     "time": formattedDate,
     "account": FFAppState().accountnumber.toString(),
-    "action": FFAppState().trainup.toString(), //動作
-    "degree": _degree,
-    "parts": _parts,
+    "action": FFAppState().mouth.toString(), //動作
+    "degree": "初階",
+    "parts": "吞嚥",
     "times": "1", //動作
-    "coin_add": _coin_add,
+    "coin_add": "5",
   });
   if (responce.statusCode == 200) {
     print("ok");
@@ -503,4 +477,4 @@ class Detector_headneck_bend {
     print(responce.statusCode);
     print("no");
   }
-}*/
+}
