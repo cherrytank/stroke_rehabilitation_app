@@ -328,20 +328,39 @@ class _PoseDetectorViewState extends State<pose_view> {
       _coin_add = "5";
       print("進階,下肢");
     }
-
-    final responce = await http.post(url,body:{
-      "time": formattedDate,
-      "account": FFAppState().accountnumber.toString(),
-      "action": FFAppState().trainup.toString(), //動作
-      "degree": _degree,
-      "parts": _parts,
-      "times": "1", //動作
-      "coin_add": _coin_add,
-    });
-    if (responce.statusCode == 200) {
-      print("ok");
-    } else {
-      print(responce.statusCode);
-      print("no");
+    if((global.posenumber>=0 && global.posenumber<=11) || (global.posenumber>=24 && global.posenumber<=35)) {
+      final responce = await http.post(url, body: {
+        "time": formattedDate,
+        "account": FFAppState().accountnumber.toString(),
+        "action": FFAppState().trainup.toString(), //動作
+        "degree": _degree,
+        "parts": _parts,
+        "times": "1", //動作
+        "coin_add": _coin_add,
+      });
+      if (responce.statusCode == 200) {
+        print("ok");
+      } else {
+        print(responce.statusCode);
+        print("no");
+      }
     }
+    else{
+      final responce = await http.post(url, body: {
+        "time": formattedDate,
+        "account": FFAppState().accountnumber.toString(),
+        "action": FFAppState().traindown.toString(), //動作
+        "degree": _degree,
+        "parts": _parts,
+        "times": "1", //動作
+        "coin_add": _coin_add,
+      });
+      if (responce.statusCode == 200) {
+        print("ok");
+      } else {
+        print(responce.statusCode);
+        print("no");
+      }
+    }
+
   }
