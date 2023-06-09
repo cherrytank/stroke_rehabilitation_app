@@ -191,7 +191,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         onTap: () async {
                                           setState(() {
                                             Face_Detect_Number = 6;//抿唇動作
-                                            FFAppState().mouth = '鼓頰動作';
+                                            FFAppState().mouth = '抿唇動作';
                                           });
                                           inputtime();
                                         },
@@ -209,7 +209,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                         ),
                                       ),
                                       Text(
-                                        '鼓頰動作',
+                                        '抿唇動作',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
