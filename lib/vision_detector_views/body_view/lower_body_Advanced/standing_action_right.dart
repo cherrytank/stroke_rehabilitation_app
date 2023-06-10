@@ -65,7 +65,7 @@ class Detector_standing_action_right implements Detector_default{
         this.orderText = "達標!";
         this.sounder(this.posecounter);
       }
-      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>300 //腳踝距離
+      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>200 //腳踝距離
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;

@@ -53,47 +53,43 @@ class Detector_wipe_table_left implements Detector_default{
 
   void poseDetector() {
     //偵測判定
-    print(posedata[32]!);
     if (this.startdDetector) {
       DetectorED = true;
       if(this.right_side){
-        this.orderText = "請往左擦拭";
+        this.orderText = "請往右擦拭";
         if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-            &&posedata[32]!>500){ //靠近邊緣
+            &&posedata[32]!>500) { //靠近邊緣
           this.startdDetector = false;
           this.orderText = "達標";
           this.posecounter++;
           this.right_side = false;
-          print("AAAAAA");
           this.sounder(this.posecounter);
+        }
         }else{
-          this.orderText = "請往右擦拭";
+          this.orderText = "請往左擦拭";
           if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
               &&posedata[32]!<200){ //靠近邊緣
             this.startdDetector = false;
             this.orderText = "達標";
             this.posecounter++;
             this.right_side = true;
-            print("BBBBB");
             this.sounder(this.posecounter);
           }
-        }
       }
     }else if (DetectorED) {
       //預防空值被訪問
-      if(!this.right_side){
+      if(this.right_side){
         this.orderText = "請往右擦拭";
-        if (posedata[30]!>200) {
-          //確認復歸
+        if (posedata[32]!> 200) { //確認復歸
           this.startdDetector = true;
+        }
         }else{
           this.orderText = "請往左擦拭";
-          if (posedata[30]!<500) {
+          if (posedata[32]!<500) {
             //確認復歸
             this.startdDetector = true;
           }
         }
-      }
     }
   }
 

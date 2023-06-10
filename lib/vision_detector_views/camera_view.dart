@@ -58,8 +58,8 @@ class _CameraViewState extends State<CameraView> {
         }
       }
     }
-    _cameraIndex = (_cameraIndex + 1) % cameras.length;
-      _startLiveFeed();
+    _switchLiveCamera();
+    _startLiveFeed();
   }
 
   @override
