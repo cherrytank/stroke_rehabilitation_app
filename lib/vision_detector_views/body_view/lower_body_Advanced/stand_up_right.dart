@@ -55,13 +55,13 @@ class Detector_stand_up_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請抬起腳";
+      this.orderText = "請\n抬\n起\n腳";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
         this.posecounter++;
         this.posetimecounter = 0;
-        this.orderText = "達標!";
+        this.orderText = "達\n標\n!";
         this.sounder(this.posecounter);
       }
       if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<150 //膝蓋角度
@@ -70,7 +70,7 @@ class Detector_stand_up_right implements Detector_default{
         //每秒目標
         this.posetimecounter++;
         print(this.posetimecounter);
-        this.orderText = "請保持住!";
+        this.orderText = "請\n保\n持\n住\n!";
       } else {
         //沒有保持
         this.posetimecounter = 0;
@@ -83,7 +83,7 @@ class Detector_stand_up_right implements Detector_default{
         //確認復歸
         this.startdDetector = true;
       } else {
-        this.orderText = "請放下腿";
+        this.orderText = "請\n放\n下\n腿\n";
       }
     }
   }

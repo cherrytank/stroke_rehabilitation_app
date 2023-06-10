@@ -76,7 +76,6 @@ export 'body_view/lower_body_Advanced/sitting_balance_left.dart';
   進階下肢
     [18][42]lift_feet(側抬腳式) done
     [19][43]stand_up(站姿抬腳) done
-    [19][43]stand_up(站姿抬腳) done
     [20][44]striding_action(跨步動作) done
     [21][45]standing_knee_bent(站姿膝彎曲) done
     [22][46]Seated_Dynamics(坐姿動態) done

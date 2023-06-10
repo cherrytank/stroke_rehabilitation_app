@@ -56,13 +56,13 @@ class Detector_standing_action_right implements Detector_default{
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請跨出右腳";
+      this.orderText = "請\n跨\n出\n右\n腳";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
         this.posecounter++;
         this.posetimecounter = 0;
-        this.orderText = "達標!";
+        this.orderText = "達\n標\n!";
         this.sounder(this.posecounter);
       }
       if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>200 //腳踝距離
@@ -70,7 +70,7 @@ class Detector_standing_action_right implements Detector_default{
         //每秒目標
         this.posetimecounter++;
         print(this.posetimecounter);
-        this.orderText = "請保持住!";
+        this.orderText = "請\n保\n持\n住\n!";
       } else {
         //沒有保持
         this.posetimecounter = 0;
@@ -83,7 +83,7 @@ class Detector_standing_action_right implements Detector_default{
         //確認復歸
         this.startdDetector = true;
       } else {
-        this.orderText = "請併攏腳";
+        this.orderText = "請\n併\n攏\n腳";
       }
     }
   }

@@ -40,8 +40,8 @@ class _Trainupperbody1WidgetState extends State<Trainupperbody1Widget> {
       print(data["action"]);
       print(data["time"]);
       //print("當天日期$gettime1");//轉換輸出型態月日年轉年月日
-      if(true){
-        if(!true){
+      if("沒時間"==data["time"]){
+        if("有訓練"==data["action"]||"有時間"==data["time"]){
 
         }
         else{

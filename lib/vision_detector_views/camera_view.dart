@@ -58,8 +58,8 @@ class _CameraViewState extends State<CameraView> {
         }
       }
     }
-    _switchLiveCamera();
     _startLiveFeed();
+    _switchLiveCamera();
   }
 
   @override

@@ -10,7 +10,6 @@ import 'package:http/http.dart' as http;
 import '../main.dart';
 import 'package:intl/intl.dart';
 
-
 class pose_view extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _PoseDetectorViewState();
@@ -23,6 +22,7 @@ class _PoseDetectorViewState extends State<pose_view> {
   bool _isBusy = false;
   CustomPaint? _customPaint;
   String? _text;
+
   @override
   void initState() {
     global.pose_tranform();
@@ -142,8 +142,8 @@ class _PoseDetectorViewState extends State<pose_view> {
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 25,
-                  color: Color.fromARGB(250, 255, 190, 52),
+                  fontSize: 40,
+                  color: Color.fromARGB(250, 255, 212, 39),
                   height: 1.2,
                   inherit: false,
                 ),
@@ -171,46 +171,75 @@ class _PoseDetectorViewState extends State<pose_view> {
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: TextStyle(
-                    fontSize: 25,
-                    color: Color.fromARGB(250, 255, 190, 52),
+                    fontSize: 40,
+                    color: Color.fromARGB(250, 255, 212, 39),
                     height: 1.2,
                     inherit: false,
                   ),
                 ),
               ),
             ),
-          Positioned(
-            //提醒視窗
-            bottom: 100,
-            child: Container(
-              padding: EdgeInsets.all(30),
-              decoration: new BoxDecoration(
-                color: Color.fromARGB(218, 255, 190, 52),
-                borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(30),
-                  right: Radius.circular(30),
+          if ((global.posenumber >= 18 && global.posenumber <= 21) ||
+              (global.posenumber >= 42 && global.posenumber <= 45)) ...[
+            Positioned(
+              //提醒視窗
+              left: 0,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: new BoxDecoration(
+                  color: Color.fromARGB(250, 65, 64, 64),
+                  borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(30),
+                    right: Radius.circular(30),
+                  ),
+                ),
+                width: 90,
+                height: 300,
+                child: AutoSizeText(
+                  "${global.Det.orderText}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 60,
+                    color: Colors.white,
+                    height: 1.2,
+                    inherit: false,
+                  ),
                 ),
               ),
-              width: 220,
-              height: 100,
-              child: AutoSizeText(
-                "${global.Det.orderText}",
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Colors.white,
-                  height: 1.2,
-                  inherit: false,
+            ).animate().slide(duration: 500.ms),
+          ] else ...[
+            Positioned(
+              //提醒視窗
+              bottom: 100,
+              child: Container(
+                padding: EdgeInsets.all(15),
+                decoration: new BoxDecoration(
+                  color: Color.fromARGB(250, 65, 64, 64),
+                  borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(30),
+                    right: Radius.circular(30),
+                  ),
+                ),
+                width: 220,
+                height: 100,
+                child: AutoSizeText(
+                  "${global.Det.orderText}",
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 50,
+                    color: Colors.white,
+                    height: 1.3,
+                    inherit: false,
+                  ),
                 ),
               ),
-            ),
-          )
-              .animate(onPlay: (controller) => controller.repeat())
-              .scaleXY(end: 1.2, duration: 0.2.seconds),
+            ).animate().slide(duration: 500.ms),
+          ]
         ],
         if (global.Det.endDetector)
-          Positioned( //退出視窗
+          Positioned(
+            //退出視窗
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -235,7 +264,9 @@ class _PoseDetectorViewState extends State<pose_view> {
                           inherit: false,
                         ),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -292,74 +323,73 @@ class _PoseDetectorViewState extends State<pose_view> {
   }
 }
 
-  Future<void> endout() async {
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-    var url;
-    String _degree;
-    String _parts;
-    String _coin_add;
-    if(global.posenumber < 6 || (global.posenumber>23 && global.posenumber<30)){
-      url = Uri.parse(ip+"train_upok.php");
-      _degree = "初階";
-      _parts = "上肢";
-      _coin_add = "5";
-      print("初階,上肢");
-    }
-    else if(global.posenumber < 12 || (global.posenumber>29 && global.posenumber<36)){
-      url = Uri.parse(ip+"train_upok.php");
-      _degree = "進階";
-      _parts = "上肢";
-      _coin_add = "5";
-      print("進階,上肢");
-    }
-    else if(global.posenumber < 18 || (global.posenumber>35 && global.posenumber<42)){
-      url = Uri.parse(ip+"train_downok.php");
-      _degree = "初階";
-      _parts = "下肢";
-      _coin_add = "5";
-      print("初階,下肢");
-    }
-    else{
-      url = Uri.parse(ip+"train_downok.php");
-      _degree = "進階";
-      _parts = "下肢";
-      _coin_add = "5";
-      print("進階,下肢");
-    }
-    if((global.posenumber>=0 && global.posenumber<=11) || (global.posenumber>=24 && global.posenumber<=35)) {
-      final responce = await http.post(url, body: {
-        "time": formattedDate,
-        "account": FFAppState().accountnumber.toString(),
-        "action": FFAppState().trainup.toString(), //動作
-        "degree": _degree,
-        "parts": _parts,
-        "times": "1", //動作
-        "coin_add": _coin_add,
-      });
-      if (responce.statusCode == 200) {
-        print("ok");
-      } else {
-        print(responce.statusCode);
-        print("no");
-      }
-    }
-    else{
-      final responce = await http.post(url, body: {
-        "time": formattedDate,
-        "account": FFAppState().accountnumber.toString(),
-        "action": FFAppState().traindown.toString(), //動作
-        "degree": _degree,
-        "parts": _parts,
-        "times": "1", //動作
-        "coin_add": _coin_add,
-      });
-      if (responce.statusCode == 200) {
-        print("ok");
-      } else {
-        print(responce.statusCode);
-        print("no");
-      }
-    }
-
+Future<void> endout() async {
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+  var url;
+  String _degree;
+  String _parts;
+  String _coin_add;
+  if (global.posenumber < 6 ||
+      (global.posenumber > 23 && global.posenumber < 30)) {
+    url = Uri.parse(ip + "train_upok.php");
+    _degree = "初階";
+    _parts = "上肢";
+    _coin_add = "5";
+    print("初階,上肢");
+  } else if (global.posenumber < 12 ||
+      (global.posenumber > 29 && global.posenumber < 36)) {
+    url = Uri.parse(ip + "train_upok.php");
+    _degree = "進階";
+    _parts = "上肢";
+    _coin_add = "5";
+    print("進階,上肢");
+  } else if (global.posenumber < 18 ||
+      (global.posenumber > 35 && global.posenumber < 42)) {
+    url = Uri.parse(ip + "train_downok.php");
+    _degree = "初階";
+    _parts = "下肢";
+    _coin_add = "5";
+    print("初階,下肢");
+  } else {
+    url = Uri.parse(ip + "train_downok.php");
+    _degree = "進階";
+    _parts = "下肢";
+    _coin_add = "5";
+    print("進階,下肢");
   }
+  if ((global.posenumber >= 0 && global.posenumber <= 11) ||
+      (global.posenumber >= 24 && global.posenumber <= 35)) {
+    final responce = await http.post(url, body: {
+      "time": formattedDate,
+      "account": FFAppState().accountnumber.toString(),
+      "action": FFAppState().trainup.toString(), //動作
+      "degree": _degree,
+      "parts": _parts,
+      "times": "1", //動作
+      "coin_add": _coin_add,
+    });
+    if (responce.statusCode == 200) {
+      print("ok");
+    } else {
+      print(responce.statusCode);
+      print("no");
+    }
+  } else {
+    final responce = await http.post(url, body: {
+      "time": formattedDate,
+      "account": FFAppState().accountnumber.toString(),
+      "action": FFAppState().traindown.toString(), //動作
+      "degree": _degree,
+      "parts": _parts,
+      "times": "1", //動作
+      "coin_add": _coin_add,
+    });
+    if (responce.statusCode == 200) {
+      print("ok");
+    } else {
+      print(responce.statusCode);
+      print("no");
+    }
+  }
+}
