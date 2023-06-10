@@ -38,7 +38,6 @@ class _PoseDetectorViewState extends State<headneck_bend> {
   void dispose() async {
     _canProcess = false;
     _poseDetector.close();
-    cameramode_front = false; //覆歸攝影機設定
     super.dispose();
   }
 

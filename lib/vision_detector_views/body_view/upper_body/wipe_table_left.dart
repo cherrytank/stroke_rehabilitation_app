@@ -54,51 +54,27 @@ class Detector_wipe_table_left implements Detector_default{
   void poseDetector() {
     //偵測判定
     print(posedata[32]!);
-    print(cameramode_front);
     if (this.startdDetector) {
       DetectorED = true;
-      if(!cameramode_front){
-        if(this.right_side){
-          this.orderText = "請往左擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[30]!>500){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = false;
-            this.sounder(this.posecounter);
-          }
+      if(this.right_side){
+        this.orderText = "請往左擦拭";
+        if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
+            &&posedata[32]!>500){ //靠近邊緣
+          this.startdDetector = false;
+          this.orderText = "達標";
+          this.posecounter++;
+          this.right_side = false;
+          print("AAAAAA");
+          this.sounder(this.posecounter);
         }else{
           this.orderText = "請往右擦拭";
           if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[30]!<200){ //靠近邊緣
+              &&posedata[32]!<200){ //靠近邊緣
             this.startdDetector = false;
             this.orderText = "達標";
             this.posecounter++;
             this.right_side = true;
-            this.sounder(this.posecounter);
-          }
-        }
-      }
-      else{
-        if(this.right_side){
-          this.orderText = "請往右擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[30]!>500){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = false;
-            this.sounder(this.posecounter);
-          }
-        }else{
-          this.orderText = "請往左擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-              &&posedata[30]!<200){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = true;
+            print("BBBBB");
             this.sounder(this.posecounter);
           }
         }
@@ -106,29 +82,13 @@ class Detector_wipe_table_left implements Detector_default{
     }else if (DetectorED) {
       //預防空值被訪問
       if(!this.right_side){
-        if(!cameramode_front){
-          this.orderText = "請往右擦拭";
-          if (posedata[30]!>200) {
-            //確認復歸
-            this.startdDetector = true;
-          }
+        this.orderText = "請往右擦拭";
+        if (posedata[30]!>200) {
+          //確認復歸
+          this.startdDetector = true;
         }else{
           this.orderText = "請往左擦拭";
           if (posedata[30]!<500) {
-            //確認復歸
-            this.startdDetector = true;
-          }
-        }
-      }else{
-        if(!cameramode_front){
-          this.orderText = "請往左擦拭";
-          if (posedata[30]!<500) {
-            //確認復歸
-            this.startdDetector = true;
-          }
-        }else{
-          this.orderText = "請往右擦拭";
-          if (posedata[30]!>200) {
             //確認復歸
             this.startdDetector = true;
           }

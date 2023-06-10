@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'coordinates_translator.dart';
-import '../camera_view.dart';
+
 List<double?> posedata=[];
 List<double?> posetrust=[];
 class PosePainter extends CustomPainter {
@@ -87,7 +87,7 @@ class PosePainter extends CustomPainter {
       paintLine(PoseLandmarkType.rightEyeInner, PoseLandmarkType.rightEyeOuter, headPaint);
       paintLine(PoseLandmarkType.rightEyeOuter, PoseLandmarkType.rightEar, headPaint);
       paintLine(PoseLandmarkType.rightMouth, PoseLandmarkType.leftMouth, headPaint);
-        posedata=[
+      posedata=[
         pose.landmarks[PoseLandmarkType.nose]?.x,pose.landmarks[PoseLandmarkType.nose]?.y,//0,1
         pose.landmarks[PoseLandmarkType.leftEyeInner]?.x,pose.landmarks[PoseLandmarkType.leftEyeInner]?.y,//2,3
         pose.landmarks[PoseLandmarkType.leftEye]?.x,pose.landmarks[PoseLandmarkType.leftEye]?.y,//4,5

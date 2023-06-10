@@ -34,7 +34,6 @@ class _PoseDetectorViewState extends State<pose_view> {
     _canProcess = false;
     _poseDetector.close();
     global.Det.timerbool = false; //關閉timer
-    cameramode_front = false; //覆歸攝影機設定
     super.dispose();
   }
 

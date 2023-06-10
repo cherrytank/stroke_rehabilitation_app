@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 
 import '../main.dart';
-bool cameramode_front = false;
+
 enum ScreenMode { liveFeed }
 
 class CameraView extends StatefulWidget {
@@ -58,6 +58,7 @@ class _CameraViewState extends State<CameraView> {
         }
       }
     }
+    _cameraIndex = (_cameraIndex + 1) % cameras.length;
       _startLiveFeed();
   }
 
@@ -65,7 +66,6 @@ class _CameraViewState extends State<CameraView> {
   void dispose() {
     _stopLiveFeed();
     super.dispose();
-    cameramode_front = false;
   }
 
   @override
@@ -186,12 +186,6 @@ class _CameraViewState extends State<CameraView> {
   Future _switchLiveCamera() async {
     setState(() => _changingCameraLens = true);
     _cameraIndex = (_cameraIndex + 1) % cameras.length;
-    if(cameramode_front){
-      cameramode_front =false;
-    }
-    else{
-      cameramode_front = true;
-    }
     await _stopLiveFeed();
     await _startLiveFeed();
     setState(() => _changingCameraLens = false);
