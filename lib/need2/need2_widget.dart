@@ -116,7 +116,7 @@ class _Need2WidgetState extends State<Need2Widget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          player.play('audios/很熱.mp3');
+                                          player.play('audios/7.mp3');
                                         },
                                         child: Image.asset(
                                           'assets/images/07.png',
@@ -170,7 +170,7 @@ class _Need2WidgetState extends State<Need2Widget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            player.play('audios/頭痛.mp3');
+                                            player.play('audios/10.mp3');
                                           },
                                           child: Image.asset(
                                             'assets/images/10.png',
@@ -231,7 +231,7 @@ class _Need2WidgetState extends State<Need2Widget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          player.play('audios/很冷.mp3');
+                                          player.play('audios/6.mp3');
                                         },
                                         child: Image.asset(
                                           'assets/images/08.png',
@@ -285,7 +285,7 @@ class _Need2WidgetState extends State<Need2Widget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            player.play('audios/腹痛.mp3');
+                                            player.play('audios/9.mp3');
                                           },
                                           child: Image.asset(
                                             'assets/images/11.png',
@@ -346,7 +346,7 @@ class _Need2WidgetState extends State<Need2Widget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          player.play('audios/頭暈.mp3');
+                                          player.play('audios/11.mp3');
                                         },
                                         child: Image.asset(
                                           'assets/images/09.png',
@@ -400,7 +400,7 @@ class _Need2WidgetState extends State<Need2Widget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            player.play('audios/下床.mp3');
+                                            player.play('audios/1.mp3');
                                           },
                                           child: Image.asset(
                                             'assets/images/12.png',

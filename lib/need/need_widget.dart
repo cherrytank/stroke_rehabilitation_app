@@ -115,7 +115,7 @@ class _NeedWidgetState extends State<NeedWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          player.play('audios/肚子餓.mp3');
+                                          player.play('audios/5.mp3');
                                         },
                                         child: Image.asset(
                                           'assets/images/01.png',
@@ -169,7 +169,7 @@ class _NeedWidgetState extends State<NeedWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            player.play('audios/大號.mp3');
+                                            player.play('audios/3.mp3');
                                           },
                                           child: Image.asset(
                                             'assets/images/04.png',
@@ -230,7 +230,7 @@ class _NeedWidgetState extends State<NeedWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          player.play('audios/口渴.mp3');
+                                          player.play('audios/2.mp3');
                                         },
                                         child: Image.asset(
                                           'assets/images/02.png',
@@ -284,7 +284,7 @@ class _NeedWidgetState extends State<NeedWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            player.play('audios/換尿布.mp3');
+                                            player.play('audios/8.mp3');
                                           },
                                           child: Image.asset(
                                             'assets/images/05.png',
@@ -345,7 +345,7 @@ class _NeedWidgetState extends State<NeedWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          player.play('audios/小號.mp3');
+                                          player.play('audios/4.mp3');
                                         },
                                         child: Image.asset(
                                           'assets/images/03.png',
@@ -399,7 +399,7 @@ class _NeedWidgetState extends State<NeedWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            player.play('audios/翻身.mp3');
+                                            player.play('audios/12.mp3');
                                           },
                                           child: Image.asset(
                                             'assets/images/06.png',
