@@ -160,7 +160,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     20, 10, 0, 0),
                                 child: Text(
-                                  '吞嚥訓練',
+                                  '口腔動作',
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
@@ -196,7 +196,7 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
                                           inputtime();
                                         },
                                         child: Image.asset(
-                                          'assets/images/43.png',
+                                          'assets/images/57.png',
                                           width: MediaQuery.of(context)
                                               .size
                                               .width *

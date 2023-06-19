@@ -243,7 +243,7 @@ class _TrainWidgetState extends State<TrainWidget> {
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Text(
-                                              '吞嚥訓練',
+                                              '口腔動作',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .displaySmall

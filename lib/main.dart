@@ -111,7 +111,7 @@ Future _showNotificationWithDefaultSound(flip) async {
   );
   await flip.show(0, '復健通知', '請記得做復健', platformChannelSpecifics, payload: 'Default_Sound'
   );
-    /*DateTime dateTime = DateTime.now();
+    DateTime dateTime = DateTime.now();
     var url = Uri.parse("http://140.127.114.38:10073/flutterphp/local_notifications.php");
       await http.post(url,body: {
         "notice": "請記得做復健",
@@ -119,7 +119,7 @@ Future _showNotificationWithDefaultSound(flip) async {
         "account" : "airehab_01",
       });
       print("已寄送");
-      print(dateTime.toString());*/
+      print(dateTime.toString());
 }
 
 var ip =('http://140.127.114.38:10073/flutterphp/');
