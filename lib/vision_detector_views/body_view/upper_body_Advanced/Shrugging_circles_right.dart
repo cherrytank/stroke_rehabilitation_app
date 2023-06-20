@@ -50,6 +50,7 @@ class Detector_Shrugging_circles_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -65,6 +66,7 @@ class Detector_Shrugging_circles_right implements Detector_default{
         this.orderText = "達標";
         this.posecounter++;
         this.sounder(this.posecounter);
+        posesounder(true);
       }
     } else if (DetectorED) {
       //預防空值被訪問
@@ -73,6 +75,7 @@ class Detector_Shrugging_circles_right implements Detector_default{
           &&posedata[23]! > (this.Standpoint_X!)) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       }
     }
   }
@@ -124,4 +127,12 @@ class Detector_Shrugging_circles_right implements Detector_default{
     player.play('pose_audios/${counter}.mp3');
   }
 
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/upper/Shrugging_circles_right.mp3');
+    }
+  }
 }

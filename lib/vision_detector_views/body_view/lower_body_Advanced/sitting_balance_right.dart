@@ -49,6 +49,7 @@ class Detector_sitting_balance_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(true);
   }
 
   void poseDetector() {
@@ -65,6 +66,7 @@ class Detector_sitting_balance_right implements Detector_default{
           this.orderText = "達標!";
           this.sounder(this.posecounter);
           this.right_side = false;
+          posesounder(false);
         }
         if (distance(posedata[24]!, posedata[24]!, posedata[48]!, posedata[48]!) > 120
             && this.startdDetector) {
@@ -86,6 +88,7 @@ class Detector_sitting_balance_right implements Detector_default{
           this.orderText = "達標!";
           this.sounder(this.posecounter);
           this.right_side = true;
+          posesounder(true);
         }
         if (distance(posedata[22]!, posedata[22]!, posedata[46]!, posedata[46]!)>120
             && this.startdDetector) {
@@ -157,5 +160,14 @@ class Detector_sitting_balance_right implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/lower/sitting_balance_right.mp3');
+    }else{
+      player.play('pose_audios/lower/sitting_balance_left.mp3');
+    }
   }
 }

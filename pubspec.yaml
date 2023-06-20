@@ -110,6 +110,8 @@ flutter:
     - assets/picture/a.png
     - assets/picture/b.png
     - assets/pose_videos/
+    - assets/pose_audios/upper/
+    - assets/pose_audios/lower/
     - assets/pose_audios/
     - assets/ml/
 

@@ -50,6 +50,7 @@ class Detector_bent_knees_left implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -57,13 +58,14 @@ class Detector_bent_knees_left implements Detector_default{
     print(posedata[32]!);
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請往後彎曲小腿";
+      this.orderText = "請往後彎曲左腳";
       if (angle(posedata[46]!, posedata[47]!, posedata[50]!, posedata[51]!, posedata[54]!, posedata[55]!)<130 //膝蓋角度
       ) {
         this.startdDetector = false;
         this.orderText = "達標";
         this.posecounter++;
         this.sounder(this.posecounter);
+        posesounder(true);
       }
     } else if (DetectorED) {
       //預防空值被訪問
@@ -72,6 +74,7 @@ class Detector_bent_knees_left implements Detector_default{
       ) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       }
     }
   }
@@ -124,5 +127,13 @@ class Detector_bent_knees_left implements Detector_default{
     player.play('pose_audios/${counter}.mp3');
   }
 
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/lower/bent_knees_left.mp3');
+    }
+  }
 
 }

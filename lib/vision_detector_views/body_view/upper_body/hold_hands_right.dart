@@ -22,7 +22,7 @@ class Detector_hold_hands_right  implements Detector_default{
   bool changeUI = false;
   bool right_side= true; //右邊開始
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內\n並維持手機直立\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -49,6 +49,7 @@ class Detector_hold_hands_right  implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -63,6 +64,7 @@ class Detector_hold_hands_right  implements Detector_default{
         this.posetimecounter = 0;
         this.orderText = "達標!";
         this.sounder(this.posecounter);
+        posesounder(true);
       }
       if (distance(posedata[32]!, posedata[33]!, posedata[48]!, posedata[49]!)>100//離開大腿
           &&angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>130//手臂角度必須直
@@ -81,6 +83,7 @@ class Detector_hold_hands_right  implements Detector_default{
       if (distance(posedata[32]!, posedata[33]!, posedata[48]!, posedata[49]!)<100) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       } else {
         this.orderText = "手放回大腿";
 
@@ -134,5 +137,14 @@ class Detector_hold_hands_right  implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/upper/hold_hands_right.mp3');
+    }
   }
 }

@@ -50,6 +50,7 @@ class Detector_Seated_Dynamics_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -64,6 +65,7 @@ class Detector_Seated_Dynamics_right implements Detector_default{
         this.orderText = "達標";
         this.posecounter++;
         this.sounder(this.posecounter);
+        posesounder(true);
       }
     } else if (DetectorED) {
       //預防空值被訪問
@@ -71,6 +73,7 @@ class Detector_Seated_Dynamics_right implements Detector_default{
       if (distance(posedata[24]!, posedata[25]!, posedata[52]!, posedata[53]!)>200) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       }
     }
   }
@@ -121,5 +124,14 @@ class Detector_Seated_Dynamics_right implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/lower/Seated_Dynamics_right.mp3');
+    }
   }
 }

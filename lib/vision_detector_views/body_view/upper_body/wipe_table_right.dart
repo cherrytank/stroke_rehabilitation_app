@@ -22,7 +22,7 @@ class Detector_wipe_table_right implements Detector_default{
   bool buttom_false = true;//按下按鈕消失
   bool changeUI = false;
   bool timerui = false;
-  String mindText = "請將上半身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將上半身拍攝於畫面內\n並維持手機直立\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -49,6 +49,7 @@ class Detector_wipe_table_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    player.play('pose_audios/upper/wipe_table_right.mp3');
   }
 
   void poseDetector() {
@@ -64,6 +65,7 @@ class Detector_wipe_table_right implements Detector_default{
           this.posecounter++;
           this.right_side = false;
           this.sounder(this.posecounter);
+          posesounder(true);
         }
       }else{
         this.orderText = "請往左擦拭";
@@ -74,6 +76,7 @@ class Detector_wipe_table_right implements Detector_default{
           this.posecounter++;
           this.right_side = true;
           this.sounder(this.posecounter);
+          posesounder(false);
         }
       }
     }else if (DetectorED) {
@@ -139,5 +142,14 @@ class Detector_wipe_table_right implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/upper/wipe_table_left.mp3');
+    }else{
+      player.play('pose_audios/upper/wipe_table_right.mp3');
+    }
   }
 }

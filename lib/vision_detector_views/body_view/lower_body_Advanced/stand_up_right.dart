@@ -49,13 +49,14 @@ class Detector_stand_up_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請\n抬\n起\n腳";
+      this.orderText = "請\n抬\n起\n右\n腳";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
@@ -63,6 +64,7 @@ class Detector_stand_up_right implements Detector_default{
         this.posetimecounter = 0;
         this.orderText = "達\n標\n!";
         this.sounder(this.posecounter);
+        posesounder(true);
       }
       if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<150 //膝蓋角度
         &&angle(posedata[24]!, posedata[25]!, posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!)<150 //身體與腿得角度
@@ -82,6 +84,7 @@ class Detector_stand_up_right implements Detector_default{
       ) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       } else {
         this.orderText = "請\n放\n下\n腿\n";
       }
@@ -136,4 +139,12 @@ class Detector_stand_up_right implements Detector_default{
     player.play('pose_audios/${counter}.mp3');
   }
 
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/lower/stand_up_right.mp3');
+    }
+  }
 }

@@ -7,7 +7,7 @@ class Detector_shrug_right implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
-  int poseTarget = 1; //目標次數設定
+  int poseTarget = 15; //目標次數設定
   bool startdDetector = false; //偵測
   bool endDetector = false; //跳轉
   bool DetectorED = false;
@@ -22,7 +22,7 @@ class Detector_shrug_right implements Detector_default{
   bool changeUI = false;
   bool right_side = true; //右邊開始
   bool timerui = true;
-  String mindText = "請將上半身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將上半身拍攝於畫面內\n並維持手機直立!\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -49,6 +49,7 @@ class Detector_shrug_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -70,6 +71,7 @@ class Detector_shrug_right implements Detector_default{
         this.posetimecounter = 0;
         this.orderText = "達標!";
         this.sounder(this.posecounter);
+        posesounder(true);
       }
       if (posedata[25]! < (this.Standpoint_Y!) && this.startdDetector) {//肩膀高於標準點
         //每秒目標
@@ -85,6 +87,7 @@ class Detector_shrug_right implements Detector_default{
       if (posedata[25]! > (this.Standpoint_Y!)) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       } else {
         this.orderText = "請復歸動作";
       }
@@ -137,5 +140,14 @@ class Detector_shrug_right implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/upper/shrug_right.mp3');
+    }
   }
 }

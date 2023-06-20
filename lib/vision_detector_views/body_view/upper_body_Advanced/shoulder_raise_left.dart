@@ -49,7 +49,7 @@ class Detector_shoulder_raise_left implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
-
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -64,6 +64,7 @@ class Detector_shoulder_raise_left implements Detector_default{
         this.posetimecounter = 0;
         this.orderText = "達標!";
         this.sounder(this.posecounter);
+        posesounder(true);
       }
       if(angle(posedata[22]!,posedata[23]!,posedata[26]!,posedata[27]!,posedata[30]!,posedata[31]!)<120){
         this.orderText = "手請伸直";
@@ -86,6 +87,7 @@ class Detector_shoulder_raise_left implements Detector_default{
       if (posedata[31]!>(posedata[23]!+100)) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       } else {
         this.orderText = "請放下手臂";
       }
@@ -139,4 +141,12 @@ class Detector_shoulder_raise_left implements Detector_default{
     player.play('pose_audios/${counter}.mp3');
   }
 
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/upper/shoulder_raise_left.mp3');
+    }
+  }
 }

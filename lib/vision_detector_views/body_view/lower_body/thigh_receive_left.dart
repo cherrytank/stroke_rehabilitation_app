@@ -49,6 +49,7 @@ class Detector_thigh_receive_left implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -63,6 +64,7 @@ class Detector_thigh_receive_left implements Detector_default{
         this.posetimecounter = 0;
         this.orderText = "達標!";
         this.sounder(this.posecounter);
+        posesounder(true);
       }
       if (distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)<300 //膝蓋距離
           &&this.startdDetector) {
@@ -81,6 +83,7 @@ class Detector_thigh_receive_left implements Detector_default{
       ) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       } else {
         this.orderText = "請回復雙腳";
       }
@@ -133,5 +136,14 @@ class Detector_thigh_receive_left implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/lower/thigh_receive_left.mp3');
+    }
   }
 }

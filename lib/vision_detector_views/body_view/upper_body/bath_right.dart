@@ -23,7 +23,7 @@ class Detector_bath_right implements Detector_default{
   bool changeUI = false;
   bool right_side = false;
   bool timerui = false;
-  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內\n並維持手機直立\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -50,6 +50,7 @@ class Detector_bath_right implements Detector_default{
     print("startdDetector be true");
     //setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
@@ -64,6 +65,7 @@ class Detector_bath_right implements Detector_default{
           this.posecounter++;
           this.right_Chest = false;
           this.sounder(this.posecounter);
+          posesounder(true);
         }
       }else{
         this.orderText = "請擦拭左胸";
@@ -73,6 +75,7 @@ class Detector_bath_right implements Detector_default{
           this.posecounter++;
           this.right_Chest = true;
           this.sounder(this.posecounter);
+          posesounder(false);
         }
       }
     }else if (DetectorED) {
@@ -139,5 +142,14 @@ class Detector_bath_right implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/upper/bath_left.mp3');
+    }else{
+      player.play('pose_audios/upper/bath_right.mp3');
+    }
   }
 }

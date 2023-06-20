@@ -31,6 +31,9 @@ class _PoseDetectorViewState extends State<pose_view> {
 
   @override
   void dispose() async {
+    if(global.Det.endDetector){
+      endout();
+    }
     _canProcess = false;
     _poseDetector.close();
     global.Det.timerbool = false; //關閉timer
@@ -284,7 +287,6 @@ class _PoseDetectorViewState extends State<pose_view> {
                           ),
                         ),
                         onPressed: () async {
-                          endout();
                           Navigator.pop(context);
                         },
                       ),

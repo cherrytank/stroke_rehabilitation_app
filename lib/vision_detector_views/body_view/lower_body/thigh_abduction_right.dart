@@ -49,13 +49,14 @@ class Detector_thigh_abduction_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請打開大腿";
+      this.orderText = "請張開大腿";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
@@ -63,6 +64,7 @@ class Detector_thigh_abduction_right implements Detector_default{
         this.posetimecounter = 0;
         this.orderText = "達標!";
         this.sounder(this.posecounter);
+        posesounder(true);
       }
       if (distance(posedata[50]!, posedata[51]!, posedata[52]!, posedata[53]!)>150 //膝蓋距離
         &&this.startdDetector) {
@@ -81,6 +83,7 @@ class Detector_thigh_abduction_right implements Detector_default{
       ) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       } else {
         this.orderText = "請合併大腿";
       }
@@ -135,4 +138,12 @@ class Detector_thigh_abduction_right implements Detector_default{
     player.play('pose_audios/${counter}.mp3');
   }
 
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/lower/thigh_abduction_right.mp3');
+    }
+  }
 }

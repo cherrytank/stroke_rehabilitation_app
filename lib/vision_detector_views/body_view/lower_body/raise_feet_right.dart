@@ -22,7 +22,7 @@ class Detector_raise_feet_right implements Detector_default{
   bool changeUI = false;
   bool right_side = true;
   bool timerui = true;
-  String mindText = "請將全身拍攝於畫面內\n並維持鏡頭穩定\n準備完成請按「Start」";
+  String mindText = "請將全身拍攝於畫面內\n並維持患側於前\n準備完成請按「Start」";
   final player = AudioCache();//播放音檔
 
   void startd(){//倒數計時
@@ -49,13 +49,14 @@ class Detector_raise_feet_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    posesounder(false);
   }
 
   void poseDetector() {
     //偵測判定
     if (this.startdDetector) {
       DetectorED = true;
-      this.orderText = "請抬起腳";
+      this.orderText = "請抬起右腳";
       if (this.posetimecounter == this.posetimeTarget) {
         //秒數達成
         this.startdDetector = false;
@@ -63,6 +64,7 @@ class Detector_raise_feet_right implements Detector_default{
         this.posetimecounter = 0;
         this.orderText = "達標!";
         this.sounder(this.posecounter);
+        posesounder(true);
       }
       if (angle(posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!, posedata[56]!, posedata[57]!)<140 //膝蓋角度
         &&angle(posedata[24]!, posedata[25]!, posedata[48]!, posedata[49]!, posedata[52]!, posedata[53]!)<140 //身體與腿得角度
@@ -82,6 +84,7 @@ class Detector_raise_feet_right implements Detector_default{
       ) {
         //確認復歸
         this.startdDetector = true;
+        posesounder(false);
       } else {
         this.orderText = "請放下腿";
       }
@@ -134,6 +137,15 @@ class Detector_raise_feet_right implements Detector_default{
 
   void sounder(int counter){
     player.play('pose_audios/${counter}.mp3');
+  }
+
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/done.mp3');
+    }else{
+      player.play('pose_audios/lower/raise_feet_right.mp3');
+    }
   }
 
 }

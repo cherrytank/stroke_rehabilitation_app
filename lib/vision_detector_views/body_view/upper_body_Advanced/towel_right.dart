@@ -68,6 +68,7 @@ class Detector_towel_right implements Detector_default{
           this.posecounter++;
           this.right_side = false;
           this.sounder(this.posecounter);
+          posesounder(false);
         }
       }else{
         this.orderText = "請往左擦拭";
@@ -78,6 +79,7 @@ class Detector_towel_right implements Detector_default{
           this.posecounter++;
           this.right_side = true;
           this.sounder(this.posecounter);
+          posesounder(true);
         }
       }
     }else if (DetectorED) {
@@ -145,4 +147,12 @@ class Detector_towel_right implements Detector_default{
     player.play('pose_audios/${counter}.mp3');
   }
 
+  Future<void> posesounder(bool BOO) async {
+    await Future.delayed(Duration(seconds: 1));
+    if(BOO){
+      player.play('pose_audios/upper/towel_right.mp3');
+    }else{
+      player.play('pose_audios/upper/towel_left.mp3');
+    }
+  }
 }
