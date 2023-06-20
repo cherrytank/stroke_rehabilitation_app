@@ -13,4 +13,6 @@ export 'detect_headneck_bend.dart';
    smile微笑
    pout嘟嘴
    flick_tongue彈舌
+   chin_movement下巴運動
+   headneck_bend頭頸運動
 */

@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'trainmouth_model.dart';
 export 'trainmouth_model.dart';
+import '../vision_detector_views/label_detector_view/face_video.dart';
 
 int Face_Detect_Number = 0;
 class TrainmouthWidget extends StatefulWidget {
@@ -42,53 +43,27 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
       print(gettime1=dateTimeFormat('yyyy-M-d', gettime));//轉換輸出型態月日年轉年月日
       if("沒時間"==data["time"]){
         if("有訓練"==data["action"]||"有時間"==data["time"]){
-
+          print("1");
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>FaceVideoApp()));
         }
         else{
-          //context.pushNamed('test');
-          switch(Face_Detect_Number){
-            case 1:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>smile()));
-              break;
-            case 2:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>tougue()));
-              break;
-            case 3:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>pout()));
-              break;
-            case 4:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>open_mouth()));
-              break;
-            case 5:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>flick_tougue()));
-              break;
-            case 6:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>pursed_lips()));
-              break;
-            case 7:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>headneck_bend()));
-              break;
-            case 8:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>chin_movement()));
-              break;
-          }
+          print("2");
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>FaceVideoApp()));
         }
       }
       else if(data["times"]=="1次"&&"有時間"==data["time"]){
         if(data["timeaction"]=="對"){
-          context.pushNamed('test');
+          print("3");
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>FaceVideoApp()));
         }
       }
       else if(data["times"]=="2次"){
-
+        print("4");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>FaceVideoApp()));
       }
     }
   }
