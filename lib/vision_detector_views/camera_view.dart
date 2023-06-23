@@ -9,7 +9,7 @@ import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 import '../main.dart';
 
 enum ScreenMode { liveFeed }
-
+bool forntcamra = true;
 class CameraView extends StatefulWidget {
   CameraView(
       {Key? key,
@@ -58,13 +58,16 @@ class _CameraViewState extends State<CameraView> {
         }
       }
     }
+    if (cameras.length > 1){
+      _cameraIndex++;
+    }
     _startLiveFeed();
-    _switchLiveCamera();
   }
 
   @override
   void dispose() {
     _stopLiveFeed();
+    forntcamra = true;
     super.dispose();
   }
 
@@ -189,6 +192,11 @@ class _CameraViewState extends State<CameraView> {
     await _stopLiveFeed();
     await _startLiveFeed();
     setState(() => _changingCameraLens = false);
+    if(forntcamra){
+      forntcamra = false;
+    }else{
+      forntcamra = true;
+    }
   }
 
   void _processCameraImage(CameraImage image) {
