@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>The camera needs to be enabled to observe whether the user completes the medical rehabilitation action</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You can choose to access the avatar, icon, and auxiliary pictures in the internal files of the app, and will not access the user's personal photos</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
