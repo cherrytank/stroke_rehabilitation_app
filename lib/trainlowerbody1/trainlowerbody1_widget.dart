@@ -25,7 +25,7 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
 
   var  gettime= DateTime.now();  //獲取按下去的時間
   var  gettime1;  //轉換輸出型態月日年轉年月日
-  inputtime()async{
+  /*inputtime()async{                                                             //此函式是鎖一天只能做一個動作並傳遞後端
     var url = Uri.parse(ip+"inputtimeDOWN.php");
     final responce = await http.post(url,body: {
       "account" : FFAppState().accountnumber,
@@ -59,7 +59,13 @@ class _Trainlowerbody1WidgetState extends State<Trainlowerbody1Widget> {
 
       }
     }
+  }*/
+  inputtime()async{         //此函式為代替方案，不限制一天動作，可以一職測試 測試完請刪掉
+    Navigator.push(context,
+      MaterialPageRoute(builder: (context)=>VideoApp()),
+    );
   }
+
 
   @override
   void initState() {

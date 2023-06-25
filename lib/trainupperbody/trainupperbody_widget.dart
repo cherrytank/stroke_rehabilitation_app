@@ -34,7 +34,7 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
     if (responce.statusCode == 200) {
       var data = json.decode(responce.body); //將json解碼為陣列形式
       if(data["lock"]["state"]=="unlock"){
-
+        context.pushNamed('trainupperbody1');     //!!!!!!!!!這段是無動作，測試完 請刪掉
       }
       else{
         context.pushNamed('trainupperbody1');
@@ -51,7 +51,7 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
     if (responce.statusCode == 200) {
       var data = json.decode(responce.body); //將json解碼為陣列形式
       if(data["lock"]["state"]=="lock"){
-
+        context.pushNamed('trainupperbody2');     //!!!!!!!!!這段是無動作，測試完 請刪掉
       }
       else{
         context.pushNamed('trainupperbody2');

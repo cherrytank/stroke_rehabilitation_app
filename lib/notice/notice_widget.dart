@@ -53,7 +53,8 @@ class _NoticeWidgetState extends State<NoticeWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
-
+    print(FFAppState().accountnumber);
+    print(_model.searchBarController.text);
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
@@ -64,301 +65,301 @@ class _NoticeWidgetState extends State<NoticeWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-          Expanded(
-              child:Container(
-                width: MediaQuery.of(context).size.width * 1.0,
-                height: MediaQuery.of(context).size.height * 0.97,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
-                      height: MediaQuery.of(context).size.height * 0.8,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 12.0, 8.0, 0.0),
-                                      child: Container(
-                                        width: 5.0,
-                                        child: TextFormField(
-                                          controller:
-                                              _model.searchBarController,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall,
-                                            hintText: '請輸入日期',
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .override(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 20.0,
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .lineColor,
-                                                width: 2.0,
+              Expanded(
+                child:Container(
+                  width: MediaQuery.of(context).size.width * 1.0,
+                  height: MediaQuery.of(context).size.height * 0.97,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 1.0,
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Padding(
+                          padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 12.0, 8.0, 0.0),
+                                        child: Container(
+                                          width: 5.0,
+                                          child: TextFormField(
+                                            controller:
+                                            _model.searchBarController,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmall,
+                                              hintText: '請輸入日期',
+                                              hintStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmall
+                                                  .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 20.0,
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 2.0,
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .lineColor,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                BorderRadius.circular(12.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 2.0,
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                BorderRadius.circular(12.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 2.0,
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                BorderRadius.circular(12.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
+                                              focusedErrorBorder:
+                                              OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                BorderRadius.circular(12.0),
+                                              ),
+                                              filled: true,
+                                              fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryBackground,
+                                              contentPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 24.0, 20.0, 24.0),
                                             ),
-                                            filled: true,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                            contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 24.0, 20.0, 24.0),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                            validator: _model
+                                                .searchBarControllerValidator
+                                                .asValidator(context),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                          validator: _model
-                                              .searchBarControllerValidator
-                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 12.0, 0.0),
-                                    child: FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 30.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 50.0,
-                                      icon: Icon(
-                                        Icons.search_sharp,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 30.0,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 12.0, 12.0, 0.0),
+                                      child: FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 30.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 50.0,
+                                        icon: Icon(
+                                          Icons.search_sharp,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 30.0,
+                                        ),
+                                        onPressed: () {
+                                          print('IconButton pressed ...');
+                                        },
                                       ),
-                                      onPressed: () {
-                                        print('IconButton pressed ...');
-                                      },
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.66,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                              Container(
+                                width: double.infinity,
+                                height: MediaQuery.of(context).size.height * 0.66,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                ),
+                                child:FutureBuilder<List>(
+                                  future: getData(),
+                                  builder: (ctx,ss) {
+                                    if(ss.hasError){
+                                      print("error");
+                                    }
+                                    if(ss.hasData){
+                                      return Items(list:ss.data);
+                                    }
+                                    else{
+                                      return CircularProgressIndicator();
+                                    }
+                                  },
+                                ),
                               ),
-                              child:FutureBuilder<List>(
-                                future: getData(),
-                                builder: (ctx,ss) {
-                                  if(ss.hasError){
-                                    print("error");
-                                  }
-                                  if(ss.hasData){
-                                    return Items(list:ss.data);
-                                  }
-                                  else{
-                                    return CircularProgressIndicator();
-                                  }
-                                },
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.safePop();
-                                },
-                                child: Image.asset(
-                                  'assets/images/17.jpg',
-                                  width: MediaQuery.of(context).size.width * 0.2,
-                                  height: MediaQuery.of(context).size.height * 0.1,
-                                  fit: BoxFit.cover,
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                5.0, 0.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.safePop();
+                                  },
+                                  child: Image.asset(
+                                    'assets/images/17.jpg',
+                                    width: MediaQuery.of(context).size.width * 0.2,
+                                    height: MediaQuery.of(context).size.height * 0.1,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                '返回',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed('documental');
-                                },
-                                child: Image.asset(
-                                  'assets/images/18.jpg',
-                                  width: MediaQuery.of(context).size.width * 0.2,
-                                  height: MediaQuery.of(context).size.height * 0.1,
-                                  fit: BoxFit.cover,
+                                Text(
+                                  '返回',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25.0,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                '使用紀錄',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed('notice');
-                                },
-                                child: Image.asset(
-                                  'assets/images/19.jpg',
-                                  width: MediaQuery.of(context).size.width * 0.2,
-                                  height: MediaQuery.of(context).size.height * 0.1,
-                                  fit: BoxFit.cover,
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                5.0, 0.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('documental');
+                                  },
+                                  child: Image.asset(
+                                    'assets/images/18.jpg',
+                                    width: MediaQuery.of(context).size.width * 0.2,
+                                    height: MediaQuery.of(context).size.height * 0.1,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                '新通知',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed('about');
-                                },
-                                child: Image.asset(
-                                  'assets/images/20.jpg',
-                                  width: MediaQuery.of(context).size.width * 0.2,
-                                  height: MediaQuery.of(context).size.height * 0.1,
-                                  fit: BoxFit.cover,
+                                Text(
+                                  '使用紀錄',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25.0,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                '關於',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25.0,
-                                    ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                5.0, 0.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('notice');
+                                  },
+                                  child: Image.asset(
+                                    'assets/images/19.jpg',
+                                    width: MediaQuery.of(context).size.width * 0.2,
+                                    height: MediaQuery.of(context).size.height * 0.1,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Text(
+                                  '新通知',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                5.0, 0.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('about');
+                                  },
+                                  child: Image.asset(
+                                    'assets/images/20.jpg',
+                                    width: MediaQuery.of(context).size.width * 0.2,
+                                    height: MediaQuery.of(context).size.height * 0.1,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Text(
+                                  '關於',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
             ],
           ),
         ),
@@ -366,12 +367,18 @@ class _NoticeWidgetState extends State<NoticeWidget> {
     );
   }
 }
-class Items extends StatelessWidget {
+class Items extends StatefulWidget {
 
   List? list;
 
   Items({this.list});
 
+  @override
+  State<Items> createState() => _ItemsState();
+}
+
+class _ItemsState extends State<Items> {
+  Set<int> readMessages = {}; // 保存已讀訊息的索引值
   @override
   Widget build(BuildContext context) {
     Widget divider0 = const Divider(
@@ -418,36 +425,55 @@ class Items extends StatelessWidget {
           : divider6;
     }
     return ListView.separated(
-      itemCount: list!.length,    //列表的數量
-      itemBuilder: (ctx,i){       //列表的構建器
-        return ListTile(
-          /*leading: !expansionpanellist_menu[
-            reversedIndex].isread
-          ?Icon(Icons.circle,
-            size: 30,
-            color: Colors.greenAccent.shade200,
-          )
-          : const Icon(Icons.circle_outlined,
-          size: 30,
-            color: Colors.green
-        ) ,
-          */
-          leading: Icon(Icons.message,
-            size: 30,
-          ),
-          title: Text(list![i]['notice'],
-            textAlign: TextAlign.start,
-            style: FlutterFlowTheme.of(context).headlineSmall.override(
-              fontFamily: 'Poppins',
-              fontSize: 25,
+      itemCount: widget.list!.length,
+      itemBuilder: (ctx, i) {
+        return GestureDetector(
+          onTap: () async {
+            setState(() {
+              readMessages.add(i);
+            });
+            await showDialog(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  title: Text('內容'),
+                  content: Text(widget.list![i]['content']),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext),
+                      child: Text('Ok'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: ListTile(
+            leading: Icon(
+              Icons.circle,
+              size: 30,
+              color: readMessages.contains(i) ? Colors.grey : Colors.black, // 已讀訊息使用灰色
             ),
-          ),
-          subtitle: Text("做復健可賺取金幣"+
-              /*list![i]['coin']+*/'   '+list![i]['time'],
-            textAlign: TextAlign.start,
-            style: FlutterFlowTheme.of(context).titleSmall.override(
-              fontFamily: 'Poppins',
-              fontSize: 19,
+
+            title: Text(
+              widget.list![i]['title']+"                     "+widget.list![i]['time'],
+              textAlign: TextAlign.start,
+              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                fontFamily: 'Poppins',
+                fontSize: 25,
+              ),
+            ),
+
+            subtitle: Text(
+              widget.list![i]['content']
+              /*widget.list![i]['time']*/,
+              overflow: TextOverflow.ellipsis,    //溢出的話會...
+              maxLines: 2,                        //最大行數2行
+              textAlign: TextAlign.start,
+              style: FlutterFlowTheme.of(context).titleSmall.override(
+                fontFamily: 'Poppins',
+                fontSize: 19,
+              ),
             ),
           ),
         );
@@ -456,5 +482,6 @@ class Items extends StatelessWidget {
         return ChooseDivider(index);
       },
     );
+
   }
 }
