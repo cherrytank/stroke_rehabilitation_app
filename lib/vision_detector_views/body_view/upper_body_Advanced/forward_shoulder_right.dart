@@ -66,12 +66,12 @@ class Detector_forward_shoulder_right implements Detector_default{
         this.sounder(this.posecounter);
         posesounder(true);
       }
-      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<120){
+      if(angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)<100){
         this.orderText = "手請伸直";
         return;
       }
-      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>120//手臂角度需大於
-          && posedata[33]!<(posedata[25]!+100)//手部須高於臀部
+      if (angle(posedata[24]!,posedata[25]!,posedata[28]!,posedata[29]!,posedata[32]!,posedata[33]!)>100//手臂角度需大於
+          && posedata[33]!<(posedata[25]!+50)//手部須高於臀部
         &&this.startdDetector) {
         //每秒目標
         this.posetimecounter++;

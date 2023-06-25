@@ -58,8 +58,8 @@ class Detector_wipe_table_right implements Detector_default{
       DetectorED = true;
       if(this.right_side){
         this.orderText = "請往右擦拭";
-        if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-            &&posedata[32]!>500) { //靠近邊緣
+        if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<250 //雙手合併
+            &&posedata[32]!>400) { //靠近邊緣
           this.startdDetector = false;
           this.orderText = "達標";
           this.posecounter++;
@@ -69,8 +69,8 @@ class Detector_wipe_table_right implements Detector_default{
         }
       }else{
         this.orderText = "請往左擦拭";
-        if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<200 //雙手合併
-            &&posedata[32]!<200){ //靠近邊緣
+        if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<250 //雙手合併
+            &&posedata[32]!<300){ //靠近邊緣
           this.startdDetector = false;
           this.orderText = "達標";
           this.posecounter++;

@@ -96,8 +96,8 @@ class Detector_shrug_left implements Detector_default {
 
   void setStandpoint() {
     //設定基準點(左上角為(0,0)向右下)
-    this.Standpoint_X = posedata[22]! - 20;
-    this.Standpoint_Y = posedata[23]! - 20;
+    this.Standpoint_X = posedata[22]! - 10;
+    this.Standpoint_Y = posedata[23]! - 10;
     this.Standpoint_bodymind_x = (posedata[22]!+posedata[24]!)/2;
     this.Standpoint_bodymind_y = (posedata[23]!+posedata[25]!)/2;
   }
