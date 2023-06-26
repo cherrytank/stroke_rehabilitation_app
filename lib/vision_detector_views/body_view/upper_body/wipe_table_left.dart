@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:io';
 import '../assembly.dart';
 import 'package:audioplayers/audioplayers.dart';//播放音檔
 
@@ -56,7 +57,10 @@ class Detector_wipe_table_left implements Detector_default{
     if (this.startdDetector) {
       DetectorED = true;
       if(this.right_side){
-        this.orderText = "請往右擦拭";
+        if(Platform.isIOS)
+          this.orderText = "請往右擦拭";
+        else
+          this.orderText = "請往左擦拭";
         if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<250 //雙手合併
             &&posedata[32]!>400) { //靠近邊緣
           this.startdDetector = false;
@@ -64,34 +68,50 @@ class Detector_wipe_table_left implements Detector_default{
           this.posecounter++;
           this.right_side = false;
           this.sounder(this.posecounter);
-          posesounder(true);
-        }
-        }else{
-          this.orderText = "請往左擦拭";
-          if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<250 //雙手合併
-              &&posedata[32]!<300){ //靠近邊緣
-            this.startdDetector = false;
-            this.orderText = "達標";
-            this.posecounter++;
-            this.right_side = true;
-            this.sounder(this.posecounter);
+          if(Platform.isIOS)
+            posesounder(true);
+          else
             posesounder(false);
-          }
+        }
+      }else{
+        if(Platform.isIOS)
+          this.orderText = "請往左擦拭";
+        else
+          this.orderText = "請往右擦拭";
+
+        if(distance(posedata[32]!, posedata[33]!, posedata[30]!, posedata[31]!)<250 //雙手合併
+            &&posedata[32]!<300){ //靠近邊緣
+          this.startdDetector = false;
+          this.orderText = "達標";
+          this.posecounter++;
+          this.right_side = true;
+          this.sounder(this.posecounter);
+          if(Platform.isIOS)
+            posesounder(false);
+          else
+            posesounder(true);
+        }
       }
     }else if (DetectorED) {
       //預防空值被訪問
       if(this.right_side){
-        this.orderText = "請往右擦拭";
+        if(Platform.isIOS)
+          this.orderText = "請往右擦拭";
+        else
+          this.orderText = "請往左擦拭";
         if (posedata[32]!> 200) { //確認復歸
           this.startdDetector = true;
         }
-        }else{
+      }else{
+        if(Platform.isIOS)
           this.orderText = "請往左擦拭";
-          if (posedata[32]!<500) {
-            //確認復歸
-            this.startdDetector = true;
-          }
+        else
+          this.orderText = "請往右擦拭";
+        if (posedata[32]!<500) {
+          //確認復歸
+          this.startdDetector = true;
         }
+      }
     }
   }
 

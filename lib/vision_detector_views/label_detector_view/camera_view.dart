@@ -66,7 +66,9 @@ class _CameraViewState extends State<CameraView> {
         }
       }
     }
-
+    if (cameras.length > 1){
+      _cameraIndex++;
+    }
     if (_cameraIndex != -1) {
       _startLiveFeed();
     } else {

@@ -66,7 +66,7 @@ class Detector_lift_feet_right implements Detector_default{
         this.sounder(this.posecounter);
         posesounder(true);
       }
-      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>200 //腳踝距離
+      if (distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)>250 //腳踝距離
         && distance(posedata[56]!, posedata[56]!, posedata[24]!, posedata[24]!)>50
         &&this.startdDetector) {
         //每秒目標
@@ -80,7 +80,7 @@ class Detector_lift_feet_right implements Detector_default{
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)<100 //腳踝距離
+      distance(posedata[54]!, posedata[55]!, posedata[56]!, posedata[57]!)<150 //腳踝距離
       ) {
         //確認復歸
         this.startdDetector = true;
