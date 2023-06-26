@@ -50,7 +50,10 @@ class Detector_wipe_table_right implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
-    player.play('pose_audios/upper/wipe_table_right.mp3');
+    if(!Platform.isIOS)
+      posesounder(true);
+    else
+      posesounder(false);
   }
 
   void poseDetector() {

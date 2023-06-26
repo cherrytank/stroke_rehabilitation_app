@@ -50,6 +50,10 @@ class Detector_wipe_table_left implements Detector_default{
     print("startdDetector be true");
     setStandpoint();
     settimer();
+    if(!Platform.isIOS)
+      posesounder(true);
+    else
+      posesounder(false);
   }
 
   void poseDetector() {
