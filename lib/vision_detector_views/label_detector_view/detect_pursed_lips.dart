@@ -280,7 +280,7 @@ class _ImageLabelViewState extends State<pursed_lips>{
     // uncomment next lines if you want to use a local model
     // make sure to add tflite model to assets/ml
     // final path = 'assets/ml/lite-model_aiy_vision_classifier_birds_V1_3.tflite';
-    final path = 'assets/ml/face_six_detector.tflite';
+    final path = 'assets/ml/pursed_lips.tflite';
     final modelPath = await _getModel(path);
     final options = LocalLabelerOptions(modelPath: modelPath);
     _imageLabeler = ImageLabeler(options: options);

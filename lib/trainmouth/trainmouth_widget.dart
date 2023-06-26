@@ -43,25 +43,21 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
       print(gettime1=dateTimeFormat('yyyy-M-d', gettime));//轉換輸出型態月日年轉年月日
       if("沒時間"==data["time"]){
         if("有訓練"==data["action"]||"有時間"==data["time"]){
-          print("1");
           Navigator.push(context,
               MaterialPageRoute(builder: (context)=>FaceVideoApp()));
         }
         else{
-          print("2");
           Navigator.push(context,
               MaterialPageRoute(builder: (context)=>FaceVideoApp()));
         }
       }
       else if(data["times"]=="1次"&&"有時間"==data["time"]){
         if(data["timeaction"]=="對"){
-          print("3");
           Navigator.push(context,
               MaterialPageRoute(builder: (context)=>FaceVideoApp()));
         }
       }
       else if(data["times"]=="2次"){
-        print("4");
         Navigator.push(context,
             MaterialPageRoute(builder: (context)=>FaceVideoApp()));
       }
