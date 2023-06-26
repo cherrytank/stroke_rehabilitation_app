@@ -9,6 +9,7 @@ import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 import '../main.dart';
 
 enum ScreenMode { liveFeed }
+
 bool forntcamra = true;
 class CameraView extends StatefulWidget {
   CameraView(
