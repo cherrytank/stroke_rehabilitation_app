@@ -210,8 +210,6 @@ class _PoseDetectorViewState extends State<headneck_bend> {
               ),
             ),
           )
-              .animate(onPlay: (controller) => controller.repeat())
-              .scaleXY(end: 1.2, duration: 0.2.seconds),
         ],
         if (Det.endDetector)
           Positioned( //退出視窗
@@ -393,8 +391,8 @@ class Detector_headneck_bend {
     } else if (DetectorED) {
       //預防空值被訪問
       if (
-      distance(posedata[16]!, posedata[17]!, posedata[24]!, posedata[25]!)>310//耳與肩膀距離
-      || distance(posedata[14]!, posedata[15]!, posedata[22]!, posedata[23]!)>310//耳與肩膀距離
+      distance(posedata[16]!, posedata[17]!, posedata[24]!, posedata[25]!)>210//耳與肩膀距離
+      || distance(posedata[14]!, posedata[15]!, posedata[22]!, posedata[23]!)>210//耳與肩膀距離
       ) {
         //確認復歸
         this.startdDetector = true;

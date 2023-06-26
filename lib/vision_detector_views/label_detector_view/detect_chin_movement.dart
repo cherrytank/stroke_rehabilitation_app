@@ -211,8 +211,6 @@ class _PoseDetectorViewState extends State<chin_movement> {
               ),
             ),
           )
-              .animate(onPlay: (controller) => controller.repeat())
-              .scaleXY(end: 1.2, duration: 0.2.seconds),
         ],
         if (Det.endDetector)
           Positioned( //退出視窗
