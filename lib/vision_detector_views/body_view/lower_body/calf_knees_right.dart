@@ -143,7 +143,7 @@ class Detector_calf_knees_right implements Detector_default{
     if(BOO){
       player.play('pose_audios/done.mp3');
     }else{
-      player.play('pose_audios/lower/calf_knees_left.mp3');
+      player.play('pose_audios/lower/calf_knees_right.mp3');
     }
   }
 }

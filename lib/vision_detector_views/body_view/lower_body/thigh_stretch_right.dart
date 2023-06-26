@@ -143,7 +143,7 @@ class Detector_thigh_stretch_right implements Detector_default{
     if(BOO){
       player.play('pose_audios/done.mp3');
     }else{
-      player.play('pose_audios/lower/thigh_stretch_left.mp3');
+      player.play('pose_audios/lower/thigh_stretch_right.mp3');
     }
   }
 
