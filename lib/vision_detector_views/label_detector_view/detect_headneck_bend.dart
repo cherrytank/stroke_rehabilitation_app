@@ -189,7 +189,7 @@ class _PoseDetectorViewState extends State<headneck_bend> {
             child: Container(
               padding: EdgeInsets.all(30),
               decoration: new BoxDecoration(
-                color: Color.fromARGB(218, 255, 190, 52),
+                color: Color.fromARGB(250, 65, 64, 64),
                 borderRadius: BorderRadius.horizontal(
                   left: Radius.circular(30),
                   right: Radius.circular(30),
