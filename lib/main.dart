@@ -25,7 +25,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
 
-  /*WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   Workmanager().initialize(
       callbackDispatcher,
       isInDebugMode: false
@@ -34,7 +34,7 @@ void main() async {
     "1",
     "simplePeriodicTask",
     frequency: Duration(minutes: 15),
-  );*/
+  );
 
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,7 +80,7 @@ void callbackDispatcher() {                        //初始化 WorkManager 插�
   Workmanager().executeTask((task, inputData) async {
     // Check if the current time is between 10:00 AM and 10:59 AM
     var now = DateTime.now();
-    if (now.hour >= 0 && now.hour < 0) {
+    if (now.hour >= 10 && now.hour < 11 || now.hour >= 16 && now.hour < 17) {
       FlutterLocalNotificationsPlugin flip = FlutterLocalNotificationsPlugin();
       var android = AndroidInitializationSettings('@mipmap/ic_launcher');
       var iOS = DarwinInitializationSettings();

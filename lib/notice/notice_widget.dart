@@ -452,11 +452,13 @@ class _ItemsState extends State<Items> {
             leading: Icon(
               Icons.circle,
               size: 30,
-              color: readMessages.contains(i) ? Colors.grey : Colors.black, // 已讀訊息使用灰色
+              color: readMessages.contains(i)
+                  ? Colors.grey
+                  : Colors.black, // 已讀訊息使用灰色
             ),
 
             title: Text(
-              widget.list![i]['title']+"      0"+widget.list![i]['time'],
+              widget.list![i]['title']+"      "+widget.list![i]['time'],
               textAlign: TextAlign.start,
               maxLines: 1,
               style: FlutterFlowTheme.of(context).headlineSmall.override(

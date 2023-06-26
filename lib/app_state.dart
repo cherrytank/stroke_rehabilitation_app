@@ -16,6 +16,7 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _a1 = prefs.getString('ff_a1') ?? _a1;
+    _notice = prefs.getString('ff_notice') ?? _notice;
     _gender = prefs.getString('ff_gender') ?? _gender;
     _imageboy = prefs.getString('ff_imageboy') ?? _imageboy;
     _imagegirl = prefs.getString('ff_imagegirl') ?? _imagegirl;
@@ -56,6 +57,13 @@ class FFAppState extends ChangeNotifier {
   set a1(String _value) {
     _a1 = _value;
     prefs.setString('ff_a1', _value);
+  }
+
+  String _notice = '';
+  String get notice => _notice;
+  set notice(String _value) {
+    _notice = _value;
+    prefs.setString('ff_notice', _value);
   }
 
   String _gender = '';
