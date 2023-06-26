@@ -321,7 +321,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                 ],
               ),
-              SingleChildScrollView(
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 0),                 //測試row
+              child:SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -454,6 +456,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ],
                 ),
               ),
+          ),
             ],
           ),
         ),
