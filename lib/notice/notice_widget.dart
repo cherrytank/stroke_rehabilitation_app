@@ -458,9 +458,8 @@ class _ItemsState extends State<Items> {
             ),
 
             title: Text(
-              widget.list![i]['title']+"      "+widget.list![i]['time'],
-              textAlign: TextAlign.start,
-              maxLines: 1,
+              widget.list![i]['title']+"                     "+widget.list![i]['time'],
+              textAlign: TextAlign.justify,
               style: FlutterFlowTheme.of(context).headlineSmall.override(
                 fontFamily: 'Poppins',
                 fontSize: 25,
