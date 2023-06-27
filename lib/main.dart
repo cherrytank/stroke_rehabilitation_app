@@ -109,7 +109,7 @@ Future _showNotificationWithDefaultSound(flip) async {
       android: androidPlatformChannelSpecifics,
       iOS: iOSPlatformChannelSpecifics
   );
-  await flip.show(0, '復健通知', '請記得做復健', platformChannelSpecifics, payload: 'Default_Sound'
+  await flip.show(0, '復健通知', '你今天復健了嗎?快來完成復健領金幣呦', platformChannelSpecifics, payload: 'Default_Sound'
   );
     DateTime dateTime = DateTime.now();
     var url = Uri.parse("http://140.127.114.38:10073/flutterphp/local_notifications.php");
