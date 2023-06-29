@@ -85,7 +85,7 @@ class _TrainWidgetState extends State<TrainWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 10.0, 0.0, 0.0),
                                 child: Text(
-                                  '需求表達',
+                                  '復健訓練',
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
