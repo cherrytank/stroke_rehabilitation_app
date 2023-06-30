@@ -27,7 +27,8 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
 
   var  gettime=DateTime.now();  //獲取按下去的時間
   var  gettime1;  //轉換輸出型態月日年轉年月日
-  inputtime()async{
+
+  /*inputtime()async{
     var url = Uri.parse(ip+"inputtimeMOUTH.php");
     final responce = await http.post(url,body: {
       "account" : FFAppState().accountnumber,
@@ -62,8 +63,12 @@ class _TrainmouthWidgetState extends State<TrainmouthWidget> {
             MaterialPageRoute(builder: (context)=>FaceVideoApp()));
       }
     }
-  }
+  }*/
 
+  inputtime()async{                                                             //測試動作有無反應
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context)=>FaceVideoApp()));
+  }
 
   @override
   void initState() {
