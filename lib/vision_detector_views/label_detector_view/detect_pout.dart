@@ -342,9 +342,9 @@ class _ImageLabelViewState extends State<pout>{
 }
 class Detector_pout {
   int  FaceTimeCounter = 0; //復健動作持續秒數
-  int  FaceTimeTarget  = 3; //復健動作秒數目標
+  int  FaceTimeTarget  = 10; //復健動作秒數目標
   int  FinishCounter   = 0; //復健動作實作次數
-  int  FinishTarget    = 3; //復健動作實作次數目標
+  int  FinishTarget    = 10; //復健動作實作次數目標
   bool StartedDetector = false;//偵測
   bool EndDetector     = false;//跳轉
   bool TimerBool       = true;//倒數計時器
