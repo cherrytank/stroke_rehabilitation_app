@@ -8,7 +8,7 @@ class Detector_wipe_table_left implements Detector_default{
   int posetimecounter = 0; //復健動作持續秒數
   int posetimeTarget = 5; //復健動作持續秒數目標
   int posecounter = 0; //復健動作實作次數
-  int poseTarget = 3; //目標次數設定
+  int poseTarget = 30; //目標次數設定
   bool startdDetector = false; //偵測
   bool endDetector = false; //跳轉
   bool DetectorED = false;
