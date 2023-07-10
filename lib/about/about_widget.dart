@@ -385,6 +385,29 @@ class _AboutWidgetState extends State<AboutWidget> {
                                             ),
                                           ),
                                         ),
+                                        SizedBox(height:20),
+                                        Container(
+                                          width: 200,
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context).secondaryBackground,
+                                            borderRadius: BorderRadius.circular(0),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await launchURL(
+                                                  'https://liff.line.me/1645278921-kWRPP32q/?accountId=255szdhq');
+                                            },
+                                            child: Text(
+                                              '醫療行為參考資料請按這',
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
