@@ -112,11 +112,9 @@ flutter:
     - assets/pdfs/
     - assets/picture/a.png
     - assets/picture/b.png
-    - assets/pose_videos/
     - assets/pose_audios/upper/
     - assets/pose_audios/lower/
     - assets/pose_audios/
-    - assets/face_videos/
     - assets/ml/
 
   # An image asset can refer to one or more resolution-specific "variants", see
