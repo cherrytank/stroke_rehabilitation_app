@@ -344,19 +344,19 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 46;
 
                                           setState(() {
-                                            FFAppState().traindown = '坐姿平衡';
+                                            FFAppState().traindown = '坐姿動態';
                                           });
                                           inputtime();
                                         },
                                         child: Image.asset(
-                                          'assets/images/52.png',
+                                          'assets/images/42.png',
                                           width: 120.0,
                                           height: 120.0,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
                                       Text(
-                                        '坐姿平衡',
+                                        '坐姿動態',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -383,19 +383,19 @@ class _Trainlowerbody2WidgetState extends State<Trainlowerbody2Widget> {
                                             global.posenumber = 47;
 
                                           setState(() {
-                                            FFAppState().traindown = '坐姿動態';
+                                            FFAppState().traindown = '坐姿平衡';
                                           });
                                           inputtime();
                                         },
                                         child: Image.asset(
-                                          'assets/images/42.png',
+                                          'assets/images/52.png',
                                           width: 120.0,
                                           height: 120.0,
                                           fit: BoxFit.fill,
                                         ),
                                       ),
                                       Text(
-                                        '坐姿動態',
+                                        '坐姿平衡',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

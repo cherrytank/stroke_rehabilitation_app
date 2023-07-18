@@ -401,7 +401,7 @@ class _AboutWidgetState extends State<AboutWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               await launchURL(
-                                                  'https://liff.line.me/1645278921-kWRPP32q/?accountId=255szdhq');
+                                                  'https://drive.google.com/drive/folders/1Suaj2T_KFVLwX32sacGBKUb-evTJcy1p?usp=drive_link');
                                             },
                                             child: Text(
                                               '醫療行為參考資料請按這',
