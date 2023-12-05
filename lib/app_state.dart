@@ -24,6 +24,9 @@ class FFAppState extends ChangeNotifier {
     _timepicker = prefs.containsKey('ff_timepicker')
         ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_timepicker')!)
         : _timepicker;
+    _joindate = prefs.containsKey('ff_joindate')
+        ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_joindate')!)
+        : _joindate;
     _name = prefs.getString('ff_name') ?? _name;
     _urgenname = prefs.getString('ff_urgenname') ?? _urgenname;
     _nickname = prefs.getString('ff_nickname') ?? _nickname;
@@ -213,6 +216,15 @@ class FFAppState extends ChangeNotifier {
     _value != null
         ? prefs.setInt('ff_timecycle', _value.millisecondsSinceEpoch)
         : prefs.remove('ff_timecycle');
+  }
+
+  DateTime? _joindate;
+  DateTime? get joindate => _joindate;
+  set joindate(DateTime? _value) {
+    _joindate = _value;
+    _value != null
+        ? prefs.setInt('ff_joindate', _value.millisecondsSinceEpoch)
+        : prefs.remove('ff_joindate');
   }
 }
 

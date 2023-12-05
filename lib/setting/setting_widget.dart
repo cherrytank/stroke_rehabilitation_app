@@ -868,7 +868,6 @@ class _SettingWidgetState extends State<SettingWidget> {
                                             fontSize: 25.0,
                                           ),
                                       textAlign: TextAlign.center,
-                                      keyboardType: TextInputType.phone,
                                       validator: _model.textController3Validator
                                           .asValidator(context),
                                     ),
@@ -1094,49 +1093,71 @@ class _SettingWidgetState extends State<SettingWidget> {
                                             fontSize: 23.0,
                                           ),
                                       textAlign: TextAlign.center,
-                                      keyboardType: TextInputType.phone,
                                       validator: _model.textController5Validator
                                           .asValidator(context),
                                     ),
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        18.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      '加入日期 :',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 27.0,
-                                            fontWeight: FontWeight.w800,
-                                          ),
-                                    ),
-                                  ),
-                                  Text(
-                                    dateTimeFormat('yMd', FFAppState().time),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
+                              // Generated code for this Row Widget...
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  final _datePicked2Date = await showDatePicker(
+                                    context: context,
+                                    initialDate: getCurrentTimestamp,
+                                    firstDate: DateTime(1900),
+                                    lastDate: DateTime(2050),
+                                  );
+                                  if (_datePicked2Date != null) {
+                                    setState(() {
+                                      _model.datePicked2 = DateTime(
+                                        _datePicked2Date.year,
+                                        _datePicked2Date.month,
+                                        _datePicked2Date.day,
+                                      );
+                                    });
+                                  }
+                                  setState(() {
+                                    FFAppState().joindate = _model.datePicked2;
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
+                                      child: Text(
+                                        '加入日期 :',
+                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                                           fontFamily: 'Poppins',
-                                          fontSize: 25.0,
+                                          fontSize: 27,
+                                          fontWeight: FontWeight.w800,
                                         ),
-                                  ),
-                                  Icon(
-                                    Icons.settings_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
-                                    size: 24.0,
-                                  ),
-                                ],
+                                      ),
+                                    ),
+                                    Text(
+                                      dateTimeFormat('yMd', FFAppState().joindate),
+                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.black,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,

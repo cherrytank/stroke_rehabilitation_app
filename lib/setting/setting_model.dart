@@ -36,6 +36,7 @@ class SettingModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
+  DateTime? datePicked2;
 
   /// Initialization and disposal methods.
 
